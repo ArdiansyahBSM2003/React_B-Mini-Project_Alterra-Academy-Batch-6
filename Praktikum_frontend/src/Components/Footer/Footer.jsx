@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,7 +8,7 @@ const Footer = () => {
       <footer className="font-roboto">
         <div className="footer p-10 bg-gray-400 text-gray-content flex-wrap">
           {/* Services section */}
-          <nav className="mb-4 ml-40">
+          <nav className="mb-4 ml-32">
             <h6 className="footer-title">Services</h6>
             <a className="link link-hover">Branding</a>
             <a className="link link-hover">Design</a>
@@ -17,7 +16,7 @@ const Footer = () => {
             <a className="link link-hover">Advertisement</a>
           </nav>
           {/* Company section */}
-          <nav className="mb-4">
+          <nav className="mb-4 ml-32">
             <h6 className="footer-title">Company</h6>
             <Link to="/aboutUs" className="link link-hover">
               About us
@@ -33,7 +32,7 @@ const Footer = () => {
             </Link>
           </nav>
           {/* Legal section */}
-          <nav className="mb-4 ml-14">
+          <nav className="mb-4 ml-32">
             <h6 className="footer-title">Legal</h6>
             <a className="link link-hover">Terms of use</a>
             <a className="link link-hover">Privacy policy</a>
@@ -76,7 +75,7 @@ const Footer = () => {
             <p>Copyright © 2024 - Ardiansyah Bsm</p>
           </aside>
           {/* Social media icons section */}
-          <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+          <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end w-full md:w-auto">
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
