@@ -5,15 +5,18 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
+      {/* Footer section */}
       <footer className="font-roboto">
-        <div className="footer p-10 bg-gray-400 text-gray-content flex flex-wrap justify-center">
-          <nav className="mb-4">
+        <div className="footer p-10 bg-gray-400 text-gray-content flex-wrap">
+          {/* Services section */}
+          <nav className="mb-4 ml-40">
             <h6 className="footer-title">Services</h6>
             <a className="link link-hover">Branding</a>
             <a className="link link-hover">Design</a>
             <a className="link link-hover">Marketing</a>
             <a className="link link-hover">Advertisement</a>
           </nav>
+          {/* Company section */}
           <nav className="mb-4">
             <h6 className="footer-title">Company</h6>
             <Link to="/aboutUs" className="link link-hover">
@@ -29,12 +32,14 @@ const Footer = () => {
               HamaScan
             </Link>
           </nav>
-          <nav className="mb-4">
+          {/* Legal section */}
+          <nav className="mb-4 ml-14">
             <h6 className="footer-title">Legal</h6>
             <a className="link link-hover">Terms of use</a>
             <a className="link link-hover">Privacy policy</a>
             <a className="link link-hover">Cookie policy</a>
           </nav>
+          {/* Newsletter section */}
           <form className="flex flex-wrap justify-center">
             <h6 className="footer-title">Newsletter</h6>
             <fieldset className="form-control w-full">
@@ -47,14 +52,16 @@ const Footer = () => {
                   placeholder="username@site.com"
                   className="input input-bordered join-item w-full mb-2 sm:mb-0 sm:w-auto"
                 />
-                <button className="btn btn-primary text-white-255 join-item w-full sm:w-auto">
+                <button className="btn bg-gray-500 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-600 text-white-255 join-item w-full sm:w-auto">
                   Subscribe
                 </button>
               </div>
             </fieldset>
           </form>
         </div>
+        {/* Bottom section */}
         <div className="footer items-center p-4 bg-neutral text-neutral-content">
+          {/* Copyright section */}
           <aside className="items-center grid-flow-col">
             <svg
               width="36"
@@ -68,6 +75,7 @@ const Footer = () => {
             </svg>
             <p>Copyright © 2024 - Ardiansyah Bsm</p>
           </aside>
+          {/* Social media icons section */}
           <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
             <a>
               <svg

@@ -8,7 +8,7 @@ const LandingPage = () => {
   return (
     <>
       {/* Bagian header */}
-      <div className="min-h-screen bg-white-255 py-24 p-10">
+      <div className="min-h-screen bg-gray-100 py-24 p-10">
         <div className="container mx-auto px-4 mt-6">
           {/* Bagian konten utama */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -24,15 +24,15 @@ const LandingPage = () => {
                 bimbingan dari ahli pertanian untuk memastikan keberhasilan
                 usaha Anda.
               </p>
-              <div className="flex flex-col md:flex-row justify-start space-x-0 md:space-x-4 space-y-4 md:space-y-0">
+              <div className="flex flex-col md:flex-row justify-start space-y-4 md:space-y-0 md:space-x-4">
                 <Link
                   to="/hamascan"
-                  className="bg-green-600 text-white-255 font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 hover:bg-green-700 w-full md:w-auto">
+                  className="bg-gray-600 text-white-255 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-700 w-full md:w-auto text-center">
                   Lakukan Scaning
                 </Link>
                 <Link
                   to="/consult"
-                  className="bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 hover:bg-gray-400 w-full md:w-auto">
+                  className="bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md hover:text-white-255 hover:bg-gray-400 w-full md:w-auto text-center mt-4 md:mt-0">
                   Konsultasi Sekarang
                 </Link>
               </div>

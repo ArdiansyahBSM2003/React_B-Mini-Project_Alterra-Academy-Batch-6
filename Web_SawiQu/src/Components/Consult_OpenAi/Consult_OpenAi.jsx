@@ -147,6 +147,11 @@ function ConsultationOpenAI() {
         <h1 className="text-4xl font-bold text-center font-serif">
           Consultation with OpenAI
         </h1>
+        <p className="text-lg text-center text-gray-700 mt-4">
+          Dengan kerjasama OpenAI, kami menyediakan layanan konsultasi OpenAI,
+          memastikan bantuan berkualiti tinggi dan terstruktur yang dapat,
+          membantu Anda menjawab pertanyaan seputar sayuran sawi.
+        </p>
       </div>
       <div className="max-w-7xl py-2 px-2 mx-auto bg-white-255 rounded-md shadow-md overflow-hidden mt-10">
         <div className="flex flex-col md:flex-row p-2">
@@ -154,7 +159,7 @@ function ConsultationOpenAI() {
             {error && <p className="text-red-500 mb-4">{error}</p>}
             <div className="mb-4">
               <textarea
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
                 rows="10"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
@@ -164,7 +169,7 @@ function ConsultationOpenAI() {
               <button
                 className={`px-4 py-2 rounded-md text-gray-800 ${
                   question
-                    ? "bg-blue-600 hover:bg-blue-200"
+                    ? "bg-gray-400 hover:bg-gray-500 hover:text-white-255"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
                 onClick={

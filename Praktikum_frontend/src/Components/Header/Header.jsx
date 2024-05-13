@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 import { BiLogoReact } from "react-icons/bi";
 import axios from "axios";
+import logo from "../../Components/assets/logo.png";
 
 // Komponen untuk header navigasi
 const Header = ({ isAuthenticated, setIsAuthenticated }) => {
@@ -109,7 +110,11 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
           <a
             className="flex items-center text-2xl font-semibold italic font-roboto cursor-pointer text-gray-700"
             onClick={() => handleNavigation("/")}>
-            <BiLogoReact className="w-12 h-12 animate-pulse text-green-500" />
+            <img
+              src={logo}
+              alt="Logo"
+              className="w-10 h-10 mr-2 rounded-full object-cover"
+            />
             SawiQu
           </a>
           <span

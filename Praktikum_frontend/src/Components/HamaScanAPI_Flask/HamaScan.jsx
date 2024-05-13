@@ -63,51 +63,51 @@ function HamaScanApi() {
   };
 
   return (
-    <div className="font-roboto flex flex-col items-center justify-center min-h-screen bg-gray-100 mx-auto p-20">
-      <div className="max-w-[80%] lg:max-w-4xl w-full bg-white rounded-lg shadow-lg p-10 flex flex-col lg:flex-row items-center">
-        <div className="flex-shrink-0 w-full lg:w-1/2 mr-4 mb-8 lg:mb-0 p-2 bg-gray-400 rounded-lg ">
+    <div className="font-roboto bg-gray-100  min-h-screen  py-10 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 flex flex-col justify-center items-center mx-auto">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center lg:text-left text-gray-800 mt-20">
+        Identifikasi Hama
+      </h1>
+      <p className="text-base lg:text-lg text-gray-600 text-center  mt-4 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center ">
+        Sistem identifikasi hama ini membantu mengenali hama dan penyakit pada
+        tanaman secara cepat dan akurat. Unggah gambar tanaman yang Anda curigai
+        terkena hama atau penyakit untuk mendapatkan hasil identifikasi.
+      </p>
+      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full mt-5 min-h-screen rounded-lg shadow-sm">
+        <div className="w-full lg:w-1/3 mb-8 lg:mb-0 mx-auto lg:mx-0 bg-gray-300 rounded-full shadow-full md:w-2/3">
           <img
             src={heroImage}
             alt="Hero Image"
-            className="w-full h-auto object-cover mx-auto"
+            className="w-full h-auto object-cover rounded-lg"
           />
         </div>
-        <div className="w-full lg:w-1/2">
-          <form onSubmit={handleSubmit} className="w-full">
-            <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-              Indentifikasi Hama
-            </h1>
-            <div className="mb-8 flex items-center justify-center">
-              <label
-                htmlFor="fileInput"
-                className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white-255 font-bold py-4 px-4 lg:px-32 rounded cursor-pointer w-full lg:w-auto">
-                <FaUpload className="mr-2" /> Upload Gambar
-              </label>
-              <input
-                id="fileInput"
-                type="file"
-                className="hidden"
-                onChange={handleImageUpload}
-              />
-            </div>
+        <div className="w-full lg:w-1/3 flex flex-col items-center mt-4 lg:mt-0">
+          <div className="mb-2">
+            <label
+              htmlFor="fileInput"
+              className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white-255 font-bold py-2 px-4 rounded cursor-pointer mb-10">
+              <FaUpload className="mr-2 text-3xl" />
+              <span>Upload Gambar</span>
+            </label>
+            <input
+              id="fileInput"
+              type="file"
+              className="hidden"
+              onChange={handleImageUpload}
+            />
+          </div>
 
-            <motion.button
-              type="submit"
-              className="bg-gray-500 hover:bg-gray-600 text-white-255 font-bold py-4 px-4 lg:px-32 rounded flex items-center justify-center mx-auto w-full lg:w-auto"
-              disabled={isLoading}>
-              {isLoading ? "Loading..." : "Identification"}
-            </motion.button>
-          </form>
-          <motion.div
-            className="mt-2 w-full relative"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{
-              opacity: imgFilename ? 1 : 0,
-              scale: imgFilename ? 1 : 0.5,
-            }}
-            transition={{ duration: 0.5 }}>
-            {imgFilename && (
-              <div className="relative">
+          <button
+            type="button"
+            className="bg-gray-400 hover:bg-gray-500 text-white-255 font-bold py-2 px-4 rounded flex items-center justify-center"
+            onClick={handleSubmit}
+            disabled={isLoading}>
+            {isLoading ? "Loading..." : "Identification"}
+          </button>
+        </div>
+        <div className="w-full lg:w-1/3 flex flex-col items-center mt-4 lg:mt-0">
+          {imgFilename && (
+            <div className="relative w-full mx-auto bg-gray-200 rounded-lg shadow-lg md:w-2/3">
+              <div className="border-4 border-gray-300 rounded-lg">
                 <img
                   src={`http://localhost:5000/static/${imgFilename}`}
                   alt="Uploaded"
@@ -116,30 +116,26 @@ function HamaScanApi() {
                     transform: identificationResult ? "scale(0.8)" : "scale(1)",
                   }}
                 />
-                <motion.div
-                  className="absolute bottom-0 left-0 w-full bg-green-600 bg-opacity-75 text-white-255 px-2 py-2 rounded-b-lg"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{
-                    opacity: identificationResult ? 1 : 0,
-                    y: identificationResult ? 0 : 50,
-                  }}
-                  transition={{ duration: 0.5 }}>
-                  {identificationResult && (
-                    <div className="flex items-center justify-between">
-                      <p className="text-lg font-bold">
-                        {identificationResult}
-                      </p>
-                      <button
-                        className="text-red-500 hover:text-red-700"
-                        onClick={handleClearResult}>
-                        <FaTrashAlt />
-                      </button>
-                    </div>
-                  )}
-                </motion.div>
               </div>
-            )}
-          </motion.div>
+              {identificationResult && (
+                <div className="absolute bottom-0 left-0 w-full bg-gray-800 text-white-255 px-2 py-2 rounded-b-lg flex items-center justify-between ">
+                  <p className="text-lg font-bold text-white-255 mx-auto">
+                    {identificationResult}
+                  </p>
+                  <button
+                    className="text-red-500 hover:text-red-700"
+                    onClick={handleClearResult}>
+                    <FaTrashAlt />
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+          <div className="relative w-full mx-auto bg-gray-400 rounded-lg shadow-lg md:w-2/3 mt-4 rounded-b-full">
+            <p className="text-center text-black-33 mt-5 mb-3 font-bold">
+              Hasil deteksi
+            </p>
+          </div>
         </div>
       </div>
       <ToastContainer />
