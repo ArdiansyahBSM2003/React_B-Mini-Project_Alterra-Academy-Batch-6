@@ -3,7 +3,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import axios from "axios";
 import logo from "../../Components/assets/logo.png";
 
@@ -89,7 +89,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
           onClick: () => handleNavigation("/konsultasi"),
         },
         {
-          label: "Konsultasi Ahli",
+          label: "Konsultasi Human",
           onClick: () => handleWhatsAppConsultation("6282155321594"),
         },
       ],
@@ -137,11 +137,6 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                     className="text-xl rounded-md text-gray-600 hover:text-green-500 py-2 px-2 cursor-pointer md:inline-flex w-[25%] flex justify-between items-center hover:underline underline-offset-8 transition-all duration-500"
                     onClick={() => setShowDropdown(!showDropdown)}>
                     {item.label}
-                    <FaChevronDown
-                      className={`transition-transform ${
-                        showDropdown ? "rotate-180" : ""
-                      }`}
-                    />
                   </button>
                   <ul
                     ref={dropdownRef}
