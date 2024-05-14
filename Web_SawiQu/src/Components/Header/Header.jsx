@@ -103,7 +103,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
   return (
     <div>
       <nav
-        className={`font-roboto pe-6 p-4 bg-gray-100 shadow-lg rounded-md md:flex md:justify-between md:w-auto min-w-full md:h-[60px] ${
+        className={`font-roboto pe-10 p-8 bg-gray-100 shadow-lg rounded-md md:flex md:justify-between md:w-auto min-w-full md:h-[60px] ${
           isHeaderVisible ? "fixed top-0 w-full" : "absolute"
         }`}>
         <div className="flex justify-between items-center">

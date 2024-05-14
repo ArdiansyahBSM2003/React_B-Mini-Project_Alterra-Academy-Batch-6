@@ -63,24 +63,24 @@ function HamaScanApi() {
   };
 
   return (
-    <div className="font-roboto bg-gray-100  min-h-screen  py-10 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 flex flex-col justify-center items-center mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold text-center lg:text-left text-gray-800 mt-20">
-        Identifikasi Hama
+    <div className="font-roboto bg-gray-100  min-h-screen  py-10 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 flex flex-col justify-center items-center mx-auto">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center lg:text-left text-gray-800 mt-14">
+        HamaScan
       </h1>
-      <p className="text-base lg:text-lg text-gray-600 text-center  mt-4 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center ">
-        Sistem identifikasi hama ini membantu mengenali hama dan penyakit pada
+      <p className="text-base lg:text-lg text-gray-600 text-center  mt-4 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center md:mt-4 md:mb-2">
+        Sistem HamaScan ini membantu mengenali hama pada sawi dan penyakit pada
         tanaman secara cepat dan akurat. Unggah gambar tanaman yang Anda curigai
         terkena hama atau penyakit untuk mendapatkan hasil identifikasi.
       </p>
-      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full mt-5 min-h-screen rounded-lg shadow-sm">
-        <div className="w-full lg:w-1/3 mb-8 lg:mb-0 mx-auto lg:mx-0 bg-gray-300 rounded-full shadow-full md:w-2/3">
+      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full min-h-screen rounded-lg shadow-sm">
+        <div className="w-full lg:w-1/3 mb-4 lg:mb-0 mx-auto lg:mx-0 bg-gray-300 rounded-full shadow-full md:w-2/3  md:mt-4 md:mb-4 sm:w-2/3">
           <img
             src={heroImage}
             alt="Hero Image"
             className="w-full h-auto object-cover rounded-lg"
           />
         </div>
-        <div className="w-full lg:w-1/3 flex flex-col items-center mt-4 lg:mt-0">
+        <div className="w-full lg:w-1/3 flex flex-col items-center mt-2 lg:mt-0">
           <div className="mb-2">
             <label
               htmlFor="fileInput"

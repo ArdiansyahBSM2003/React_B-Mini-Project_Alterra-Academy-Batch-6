@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function ConsultationOpenAI() {
+function Consult_OpenAi() {
   // State untuk menyimpan pertanyaan, jawaban, daftar percakapan, dan lainnya
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -249,4 +249,4 @@ function ConsultationOpenAI() {
     </div>
   );
 }
-export default ConsultationOpenAI;
+export default Consult_OpenAi;
