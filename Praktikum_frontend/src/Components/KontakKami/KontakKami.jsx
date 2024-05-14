@@ -75,8 +75,8 @@ const KontakKami = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen p-10">
-      <div className="w-full max-w-full bg-base-100 p-5 mt-10">
+    <div className="flex flex-col justify-center items-center min-h-screen p-10 pt-4 bg-gray-100">
+      <div className="w-full max-w-full bg-base-100 p-5 mt-2 ">
         {/* Pemberitahuan Sukses */}
         {berhasil && (
           <p role="alert" className="text-green-500 text-center mb-0">
@@ -85,14 +85,16 @@ const KontakKami = () => {
         )}
         {/* Bagian Judul */}
         <div className="flex flex-col md:flex-row items-center justify-center mb-8 mt-12">
-          <h1 className="text-4xl font-bold text-gray-800">Hubungi Kami</h1>
+          <h1 className="text-4xl font-bold text-gray-800 lg:mt-10">
+            Kontak Kami
+          </h1>
         </div>
         {error.pesan && (
           <div className="text-red-600 text-center">{error.pesan}</div>
         )}
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row ">
           {/* Bagian Informasi Kontak */}
-          <div className="w-full md:w-1/3 p-6 bg-gray-200 shadow-lg mr-4">
+          <div className="w-full md:w-1/3 p-6 bg-gray-200 shadow-lg rounded-md mr-4">
             <h2 className="text-xl font-bold mb-4 text-center">
               Informasi Kontak
             </h2>

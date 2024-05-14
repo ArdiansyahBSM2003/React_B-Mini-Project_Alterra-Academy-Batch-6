@@ -63,11 +63,11 @@ function HamaScanApi() {
   };
 
   return (
-    <div className="font-roboto bg-gray-100 min-h-screen py-10 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 flex flex-col justify-center items-center mx-auto">
+    <div className="font-roboto bg-gray-100 min-h-screen py-10 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 flex flex-col justify-center items-center mx-auto ">
       <h1 className="text-2xl sm:text-3xl sm:p-8 font-bold text-center lg:text-left text-gray-800 mt-14">
         HamaScan
       </h1>
-      <p className=" text-base lg:text-lg text-gray-600 text-center mt-2 mb-2 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center md:mt-4 md:mb-2">
+      <p className=" text-base lg:text-lg text-gray-600 text-center  mb-2 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center md:mt-4 md:mb-2">
         Sistem HamaScan ini membantu mengenali hama pada sawi dan penyakit pada
         tanaman secara cepat dan akurat. Unggah gambar tanaman yang Anda curigai
         terkena hama atau penyakit untuk mendapatkan hasil identifikasi.
@@ -84,7 +84,7 @@ function HamaScanApi() {
           <div className="mb-2">
             <label
               htmlFor="fileInput"
-              className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white-255 font-bold py-2 px-4 rounded cursor-pointer mb-10">
+              className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white-255 font-bold py-2 px-4 rounded cursor-pointer mb-5">
               <FaUpload className="mr-2 text-3xl" />
               <span>Unggah Gambar</span>
             </label>
