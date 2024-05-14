@@ -119,7 +119,7 @@ const Daftar = () => {
       <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
         <div className="w-full max-w-lg bg-white-255 rounded-lg shadow-md p-6  sm:mt-0">
           <h1 className="text-3xl font-bold mb-4 mt-8 text-gray-800 text-center">
-            Register
+            Daftar
           </h1>
           <Formik
             initialValues={initialValues}
@@ -180,7 +180,7 @@ const Daftar = () => {
                   <label
                     htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-700">
-                    Your password
+                    Kata sandi Anda
                   </label>
                   <div className="relative">
                     <Field
@@ -220,7 +220,7 @@ const Daftar = () => {
                   <label
                     htmlFor="confirmPassword"
                     className="block mb-2 text-sm font-medium text-gray-700">
-                    Confirm Your Password
+                    Konfirmasi password Anda
                   </label>
                   <div className="relative">
                     <Field
@@ -262,7 +262,7 @@ const Daftar = () => {
                     colorScheme="green"
                     isLoading={isSubmitting}
                     className="rounded-lg">
-                    Register
+                    Daftar
                   </Button>
                 </div>
               </Form>
@@ -271,9 +271,9 @@ const Daftar = () => {
 
           {/* Tautan untuk login jika sudah memiliki akun */}
           <Text className="mt-2 text-center text-gray-600">
-            Already have an account?
+            Sudah memiliki akun?
             <RouterLink to="/login" className="text-green-600 hover:underline">
-              Sign in here
+              Masuk di sini
             </RouterLink>
           </Text>
         </div>

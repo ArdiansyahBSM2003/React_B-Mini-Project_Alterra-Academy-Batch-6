@@ -218,7 +218,7 @@ const Login = ({ setIsAuthenticated }) => {
                 <label
                   htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900">
-                  Remember me
+                  Ingat saya
                 </label>
               </div>
               <RouterLink
