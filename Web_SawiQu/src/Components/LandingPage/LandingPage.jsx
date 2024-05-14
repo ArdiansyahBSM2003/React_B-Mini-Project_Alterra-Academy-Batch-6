@@ -19,10 +19,9 @@ const LandingPage = () => {
               </h1>
               <p className="text-lg text-gray-600 mb-6">
                 Tingkatkan produktivitas dan hasil panen Anda dengan layanan
-                petani sawi kami yang memanfaatkan teknologi terkini, termasuk
-                Machine Learning dan Hamascan. Kami menawarkan konsultasi AI dan
-                bimbingan dari ahli pertanian untuk memastikan keberhasilan
-                usaha Anda.
+                petani sawi kami yang memanfaatkan teknologi terkini, yaitu
+                Computer Vision. Kami menawarkan konsultasi AI dan bimbingan
+                dari ahli pertanian untuk memastikan keberhasilan usaha Anda.
               </p>
               <div className="flex flex-col md:flex-row justify-start space-y-4 md:space-y-0 md:space-x-4">
                 <Link
