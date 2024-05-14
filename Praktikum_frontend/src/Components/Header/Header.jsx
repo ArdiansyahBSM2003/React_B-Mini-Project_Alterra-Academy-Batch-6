@@ -72,7 +72,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
       .replace(/\s+/g, "")
       .replace(/^0+/, "62");
     const encodedMessage = encodeURIComponent(
-      "Halo, apakah anda bersedia untuk tempat Berkonsultasi?"
+      "Halo, apakah anda bersedia untuk jadi tempat Berkonsultasi?"
     );
     const whatsappLink = `https://wa.me/${formattedPhoneNumber}?text=${encodedMessage}`;
     window.open(whatsappLink, "_blank");
