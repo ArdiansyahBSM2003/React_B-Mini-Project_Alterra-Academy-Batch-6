@@ -67,7 +67,7 @@ function HamaScanApi() {
       <h1 className="text-2xl sm:text-3xl sm:p-8 font-bold text-center lg:text-left text-gray-800 mt-14">
         HamaScan
       </h1>
-      <p className="text-base lg:text-lg text-gray-600 text-center mt-4 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center md:mt-4 md:mb-2">
+      <p className=" text-base lg:text-lg text-gray-600 text-center mt-2 mb-2 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center md:mt-4 md:mb-2">
         Sistem HamaScan ini membantu mengenali hama pada sawi dan penyakit pada
         tanaman secara cepat dan akurat. Unggah gambar tanaman yang Anda curigai
         terkena hama atau penyakit untuk mendapatkan hasil identifikasi.
