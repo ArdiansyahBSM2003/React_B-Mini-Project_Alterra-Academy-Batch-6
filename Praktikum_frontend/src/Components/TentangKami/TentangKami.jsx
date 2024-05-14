@@ -24,7 +24,7 @@ const TentangKami = () => {
           {/* Deskripsi */}
           <div className="flex flex-col space-y-4">
             <p className="text-sm text-gray-700  lg:test-lg mb-6">
-              SawiQu adalah aplikasi yang menggunakan teknologi machine learning
+              SawiQu adalah aplikasi yang menggunakan teknologi Computer Vision
               untuk mengidentifikasi hama pertanian berdasarkan gambar yang
               diunggah oleh pengguna. Kami bekerja sama dengan para ahli
               pertanian dan menggunakan teknologi terbaru untuk membantu petani
