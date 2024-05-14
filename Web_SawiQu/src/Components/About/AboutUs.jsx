@@ -22,8 +22,8 @@ const AboutUs = () => {
           </div>
 
           {/* Deskripsi */}
-          <div className="flex flex-col space-y-4 w-2/3">
-            <p className="text-sm text-gray-700 lg:test-lg mb-6">
+          <div className="flex flex-col space-y-4">
+            <p className="text-sm text-gray-700  lg:test-lg mb-6">
               SawiQu adalah aplikasi yang menggunakan teknologi machine learning
               untuk mengidentifikasi hama pertanian berdasarkan gambar yang
               diunggah oleh pengguna. Kami bekerja sama dengan para ahli
