@@ -20,7 +20,7 @@ const LandingPage = () => {
               <p className="text-lg text-gray-600 mb-6">
                 Tingkatkan produktivitas dan hasil panen Anda dengan layanan
                 petani sawi kami yang memanfaatkan teknologi terkini, yaitu
-                Computer Vision. Kami menawarkan konsultasi AI dan bimbingan
+                Computer Vision. Kami menawarkan konsultasi OpenAI dan bimbingan
                 dari ahli pertanian untuk memastikan keberhasilan usaha Anda.
               </p>
               <div className="flex flex-col md:flex-row justify-start space-y-4 md:space-y-0 md:space-x-4">
