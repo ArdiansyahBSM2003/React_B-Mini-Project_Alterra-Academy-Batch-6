@@ -64,7 +64,7 @@ function HamaScanApi() {
 
   return (
     <div className="font-roboto bg-gray-100 min-h-screen py-10 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 flex flex-col justify-center items-center mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold text-center lg:text-left text-gray-800 mt-14">
+      <h1 className="text-2xl sm:text-3xl sm:p-8 font-bold text-center lg:text-left text-gray-800 mt-14">
         HamaScan
       </h1>
       <p className="text-base lg:text-lg text-gray-600 text-center mt-4 w-1/2 lg:w-3/4 mx-auto lg:mx-0 lg:text-center md:mt-4 md:mb-2">

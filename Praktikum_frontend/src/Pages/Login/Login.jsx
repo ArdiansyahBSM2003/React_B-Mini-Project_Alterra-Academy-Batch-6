@@ -89,7 +89,7 @@ const Login = ({ setIsAuthenticated }) => {
       // Login berhasil
       toast({
         title: "Login berhasil!",
-        status: "berhasil",
+        status: "success",
         duration: 3000,
         isClosable: true,
         position: "top",
@@ -110,8 +110,8 @@ const Login = ({ setIsAuthenticated }) => {
     } else {
       // Login gagal
       toast({
-        title: "Login failed",
-        description: "Incorrect email or password.",
+        title: "Gagal masuk",
+        description: "Email atau sandi salah.",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -218,11 +218,11 @@ const Login = ({ setIsAuthenticated }) => {
                 <label
                   htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900">
-                  Ingat saya
+                  Remember me
                 </label>
               </div>
               <RouterLink
-                to="/lupaPassword"
+                to="/forgot-password"
                 className="text-sm text-green-800 hover:text-green-800">
                 Lupa password?
               </RouterLink>

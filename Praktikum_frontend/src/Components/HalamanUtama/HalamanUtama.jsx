@@ -30,7 +30,7 @@ const HalamanUtama = () => {
                   Lakukan Scaning
                 </Link>
                 <Link
-                  to="/consult"
+                  to="/konsultasi"
                   className="bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md hover:text-white-255 hover:bg-gray-400 w-full md:w-auto text-center mt-4 md:mt-0">
                   Konsultasi Sekarang
                 </Link>

@@ -45,21 +45,21 @@ const Daftar = () => {
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
-      .min(3, "Nama depan harus minimal 3 karakter")
-      .required("Nama depan diperlukan"),
+      .min(3, "First name must be at least 3 characters")
+      .required("First name is required"),
     lastName: Yup.string()
-      .min(3, "Nama belakang harus minimal 3 karakter")
-      .required("Nama belakang diperlukan"),
-    username: Yup.string().required("Username diperlukan"),
+      .min(3, "Last name must be at least 3 characters")
+      .required("Last name is required"),
+    username: Yup.string().required("Username is required"),
     email: Yup.string()
-      .email("Alamat email tidak valid")
-      .required("Email diperlukan"),
+      .email("Invalid email address")
+      .required("Email is required"),
     password: Yup.string()
-      .min(8, "Kata sandi harus minimal 8 karakter")
-      .required("Kata sandi diperlukan"),
+      .min(8, "Password must be at least 8 characters")
+      .required("Password is required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Kata sandi harus cocok")
-      .required("Konfirmasi kata sandi diperlukan"),
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Password confirmation is required"),
   });
 
   // Penanganan submit formulir
@@ -71,8 +71,8 @@ const Daftar = () => {
     localStorage.setItem("users", JSON.stringify(users));
 
     toast({
-      title: "Pendaftaran berhasil! Silakan masuk.",
-      status: "berhasil",
+      title: "Registration successful! Please log in.",
+      status: "success",
       duration: 3000,
       isClosable: true,
       position: "top",
@@ -98,7 +98,7 @@ const Daftar = () => {
         <div className="w-full lg:w-1/2 h-full relative">
           <img
             src={heroImage}
-            alt="Gambar Lupa Kata Sandi"
+            alt="Forgot Password Image"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
@@ -109,7 +109,7 @@ const Daftar = () => {
             />
             <h1 className="text-4xl font-bold text-white-255">SawiQu</h1>
             <p className="text-white-255 font-mono text-sm mb-4">
-              Produk Segar dan Keren
+              Product Fresh and Cool
             </p>
           </div>
         </div>
@@ -119,7 +119,7 @@ const Daftar = () => {
       <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
         <div className="w-full max-w-lg bg-white-255 rounded-lg shadow-md p-6  sm:mt-0">
           <h1 className="text-3xl font-bold mb-4 mt-8 text-gray-800 text-center">
-            Daftar
+            Register
           </h1>
           <Formik
             initialValues={initialValues}
@@ -131,7 +131,7 @@ const Daftar = () => {
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <FormControl>
-                      <FormLabel>Nama Depan</FormLabel>
+                      <FormLabel>First Name</FormLabel>
                       <Field type="text" name="firstName" as={Input} />
                       <ErrorMessage
                         name="firstName"
@@ -142,7 +142,7 @@ const Daftar = () => {
                   </div>
                   <div className="w-full md:w-1/2 px-3">
                     <FormControl>
-                      <FormLabel>Nama Belakang</FormLabel>
+                      <FormLabel>Last Name</FormLabel>
                       <Field type="text" name="lastName" as={Input} />
                       <ErrorMessage
                         name="lastName"
@@ -180,7 +180,7 @@ const Daftar = () => {
                   <label
                     htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-700">
-                    Kata Sandi Anda
+                    Your password
                   </label>
                   <div className="relative">
                     <Field
@@ -220,7 +220,7 @@ const Daftar = () => {
                   <label
                     htmlFor="confirmPassword"
                     className="block mb-2 text-sm font-medium text-gray-700">
-                    Konfirmasi Kata Sandi Anda
+                    Confirm Your Password
                   </label>
                   <div className="relative">
                     <Field
@@ -262,7 +262,7 @@ const Daftar = () => {
                     colorScheme="green"
                     isLoading={isSubmitting}
                     className="rounded-lg">
-                    Daftar
+                    Register
                   </Button>
                 </div>
               </Form>
@@ -271,9 +271,9 @@ const Daftar = () => {
 
           {/* Tautan untuk login jika sudah memiliki akun */}
           <Text className="mt-2 text-center text-gray-600">
-            Sudah memiliki akun?
+            Already have an account?
             <RouterLink to="/login" className="text-green-600 hover:underline">
-              Masuk di sini
+              Sign in here
             </RouterLink>
           </Text>
         </div>
