@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 const TentangKami = () => {
   return (
-    <div className="min-h-screen py-14 px-5 flex justify-center items-center">
-      <div className="container mx-auto mr-10 ml-5 p-2">
+    <div className="container  min-h-screen py-20 px-5 flex justify-center items-center ">
+      <div className="mx-auto ml-5 p-2 ">
         {/* Judul */}
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-14 mt-8">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-14 pt-4">
           SawiQu
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
           {/* Gambar */}
           <div className="flex-shrink-0 w-2/3 ml-auto mr-auto mb-8 lg:mb-0 p-0 bg-gray-400 rounded-lg md:mr-10 md:w-1/2">
             <img

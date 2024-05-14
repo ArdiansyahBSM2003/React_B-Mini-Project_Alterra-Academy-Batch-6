@@ -75,8 +75,8 @@ const KontakKami = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen p-10 pt-4 bg-gray-100">
-      <div className="w-full max-w-full bg-base-100 p-5 mt-2 ">
+    <div className="flex flex-col justify-center items-center min-h-screen p-10 bg-gray-100">
+      <div className="w-full max-w-full p-5 mt-2 bg-gray-100">
         {/* Pemberitahuan Sukses */}
         {berhasil && (
           <p role="alert" className="text-green-500 text-center mb-0">
