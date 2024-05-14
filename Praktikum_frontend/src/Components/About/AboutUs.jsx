@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen py-20 px-10 flex justify-center items-center">
-      <div className="container mx-auto mr-10 ml-5 p-8">
+    <div className="min-h-screen py-14 px-5 flex justify-center items-center">
+      <div className="container mx-auto mr-10 ml-5 p-2">
         {/* Judul */}
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-20 mt-8">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-14 mt-8">
           SawiQu
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {/* Gambar */}
-          <div className="flex-shrink-0 w-2/3 ml-auto mr-auto mb-8 lg:mb-0 p-0 bg-gray-400 rounded-lg md:mr-10">
+          <div className="flex-shrink-0 w-2/3 ml-auto mr-auto mb-8 lg:mb-0 p-0 bg-gray-400 rounded-lg md:mr-10 md:w-1/2">
             <img
               src={heroImage}
               alt="Hero Image"
@@ -22,8 +22,8 @@ const AboutUs = () => {
           </div>
 
           {/* Deskripsi */}
-          <div className="flex flex-col space-y-6 mt-10">
-            <p className="text-lg text-gray-700 mb-6">
+          <div className="flex flex-col space-y-4 w-2/3">
+            <p className="text-sm text-gray-700 lg:test-lg mb-6">
               SawiQu adalah aplikasi yang menggunakan teknologi machine learning
               untuk mengidentifikasi hama pertanian berdasarkan gambar yang
               diunggah oleh pengguna. Kami bekerja sama dengan para ahli
