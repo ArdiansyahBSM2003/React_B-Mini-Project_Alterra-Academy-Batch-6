@@ -222,7 +222,7 @@ const Login = ({ setIsAuthenticated }) => {
                 </label>
               </div>
               <RouterLink
-                to="/forgot-password"
+                to="/lupaPassword"
                 className="text-sm text-green-800 hover:text-green-800">
                 Lupa password?
               </RouterLink>
