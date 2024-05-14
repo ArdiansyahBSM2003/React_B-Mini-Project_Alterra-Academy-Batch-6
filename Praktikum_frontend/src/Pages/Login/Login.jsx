@@ -22,7 +22,7 @@ const Login = ({ setIsAuthenticated }) => {
   const toast = useToast();
 
   useEffect(() => {
-    // Mengatur deteksi layar besar
+    // Menetapkan deteksi layar besar
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
@@ -57,14 +57,14 @@ const Login = ({ setIsAuthenticated }) => {
     const emailRegex = /\S+@\S+\.\S+/;
 
     if (!emailRegex.test(email)) {
-      setEmailError("Email must be valid.");
+      setEmailError("Email harus valid.");
       isValid = false;
     } else {
       setEmailError("");
     }
 
     if (password.length < 8) {
-      setPasswordError("Password must be at least 8 characters.");
+      setPasswordError("Kata sandi harus minimal 8 karakter.");
       isValid = false;
     } else {
       setPasswordError("");
@@ -88,7 +88,7 @@ const Login = ({ setIsAuthenticated }) => {
     if (user || (email === "ardhi@gmail.com" && password === "12345678")) {
       // Login berhasil
       toast({
-        title: "Login successful!",
+        title: "Login berhasil!",
         status: "success",
         duration: 3000,
         isClosable: true,
@@ -106,12 +106,12 @@ const Login = ({ setIsAuthenticated }) => {
       localStorage.setItem("isUserAuthenticated", "true");
       localStorage.setItem("userToken", user ? user.token || "" : "");
 
-      navigate("/landingpage");
+      navigate("/halamanUtama");
     } else {
       // Login gagal
       toast({
-        title: "Login failed",
-        description: "Incorrect email or password.",
+        title: "Login gagal",
+        description: "Email atau kata sandi salah.",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -126,7 +126,7 @@ const Login = ({ setIsAuthenticated }) => {
         <div className="w-full lg:w-1/2 h-full relative">
           <img
             src={heroImage}
-            alt="Forgot Password Image"
+            alt="Gambar Lupa Kata Sandi"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
@@ -137,7 +137,7 @@ const Login = ({ setIsAuthenticated }) => {
             />
             <h1 className="text-4xl font-bold text-white-255">SawiQu</h1>
             <p className="text-white-255 font-mono text-sm mb-4">
-              Product Fresh and Cool
+              Produk Segar dan Keren
             </p>
           </div>
         </div>
@@ -159,7 +159,7 @@ const Login = ({ setIsAuthenticated }) => {
                 type="email"
                 id="email"
                 value={email}
-                placeholder="Enter your email..."
+                placeholder="Masukkan email Anda..."
                 onChange={(e) => setEmail(e.target.value)}
                 className={`w-full px-3 py-2 border ${
                   emailError
@@ -178,7 +178,7 @@ const Login = ({ setIsAuthenticated }) => {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   value={password}
-                  placeholder="Enter your password..."
+                  placeholder="Masukkan kata sandi Anda..."
                   onChange={(e) => setPassword(e.target.value)}
                   className={`w-full px-3 py-2 border ${
                     passwordError
@@ -218,13 +218,13 @@ const Login = ({ setIsAuthenticated }) => {
                 <label
                   htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900">
-                  Remember me
+                  Ingat saya
                 </label>
               </div>
               <RouterLink
-                to="/forgot-password"
+                to="/lupaPassword"
                 className="text-sm text-green-800 hover:text-green-800">
-                Forgot the password?
+                Lupa kata sandi?
               </RouterLink>
             </div>
 
@@ -238,11 +238,11 @@ const Login = ({ setIsAuthenticated }) => {
           </form>
 
           <p className="mt-4 text-center text-gray-800">
-            Don't have an account?
+            Belum punya akun?
             <RouterLink
-              to="/register"
+              to="/daftar"
               className="text-green-800 hover:underline">
-              Register here
+              Daftar di sini
             </RouterLink>
           </p>
         </div>

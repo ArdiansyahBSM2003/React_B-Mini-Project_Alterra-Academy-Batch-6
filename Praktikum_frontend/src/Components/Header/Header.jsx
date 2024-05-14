@@ -73,7 +73,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
       .replace(/\s+/g, "")
       .replace(/^0+/, "62");
     const encodedMessage = encodeURIComponent(
-      "Halo, apakah anda tersedia untuk konsultasi?"
+      "Halo, apakah anda tersedia untuk tempat konsultasi?"
     );
     const whatsappLink = `https://wa.me/${formattedPhoneNumber}?text=${encodedMessage}`;
     window.open(whatsappLink, "_blank");
@@ -81,23 +81,23 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
 
   // Daftar menu navigasi
   const menuItems = [
-    { label: "Home", path: "/" },
+    { label: "Halaman Utama", path: "/" },
     {
-      label: " Consultation",
+      label: "Konsultasi",
       dropdown: [
         {
-          label: "Consult OpenAI",
-          onClick: () => handleNavigation("/consult"),
+          label: "Konsultasi OpenAI",
+          onClick: () => handleNavigation("/konsultasi"),
         },
         {
-          label: "Human Consult",
+          label: "Konsultasi Ahli",
           onClick: () => handleWhatsAppConsultation("6282155321594"),
         },
       ],
     },
     { label: "HamaScan", path: "/hamaScan" },
-    { label: "About", path: "/aboutUs" },
-    { label: "Contact", path: "/contactUs" },
+    { label: "Tentang", path: "/tentang" },
+    { label: "Kontak", path: "/kontak" },
   ];
 
   return (
@@ -135,7 +135,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
               {item.dropdown ? (
                 <div className="relative group">
                   <button
-                    className="text-xl rounded-md text-gray-600 hover:text-green-500 py-2 px-2 cursor-pointer md:inline-flex w-[25%] flex justify-between items-center hover:underline underline-offset-8 transition-all duration-500"
+                    className="text-xl rounded-md text-gray-600 hover:text-green-500 py-2 px-0 cursor-pointer md:inline-flex w-[25%] flex justify-between items-center hover:underline underline-offset-8 transition-all duration-500"
                     onClick={() => setShowDropdown(!showDropdown)}>
                     {item.label}
                     <FaChevronDown

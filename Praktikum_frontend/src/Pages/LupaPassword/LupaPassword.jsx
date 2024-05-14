@@ -7,11 +7,11 @@ import heroImage from "../../Components/assets/hero-login.png";
 import logo from "../../Components/assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-function ForgotPassword() {
+function LupaPassword() {
   // State untuk menyimpan data email, password baru, dan konfirmasi password baru
   const [email, setEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordBaru, setPasswordBaru] = useState("");
+  const [konfirmasiPassword, setKonfirmasiPassword] = useState("");
 
   // State untuk menyimpan pesan kesalahan validasi
   const [emailError, setEmailError] = useState("");
@@ -21,8 +21,9 @@ function ForgotPassword() {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   // State untuk menampilkan/menyembunyikan password baru dan konfirmasi password baru
-  const [showNewPassword, setShowNewPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [tampilkanPasswordBaru, setTampilkanPasswordBaru] = useState(false);
+  const [tampilkanKonfirmasiPassword, setTampilkanKonfirmasiPassword] =
+    useState(false);
 
   const navigate = useNavigate();
   const toast = useToast();
@@ -44,17 +45,17 @@ function ForgotPassword() {
 
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
-      setEmailError("Email must be valid");
+      setEmailError("Email harus valid");
       isValid = false;
     } else {
       setEmailError("");
     }
 
-    if (newPassword !== confirmPassword) {
-      setPasswordError("New password and confirm password do not match");
+    if (passwordBaru !== konfirmasiPassword) {
+      setPasswordError("Password baru dan konfirmasi password tidak cocok");
       isValid = false;
-    } else if (newPassword.length < 8) {
-      setPasswordError("The new password must be at least 8 characters long");
+    } else if (passwordBaru.length < 8) {
+      setPasswordError("Password baru harus minimal 8 karakter");
       isValid = false;
     } else {
       setPasswordError("");
@@ -74,12 +75,12 @@ function ForgotPassword() {
     const userIndex = users.findIndex((user) => user.email === email);
 
     if (userIndex !== -1) {
-      users[userIndex].password = newPassword;
+      users[userIndex].password = passwordBaru;
       localStorage.setItem("users", JSON.stringify(users));
 
       toast({
-        title: "Success",
-        description: "Password changed successfully. Please log in again.",
+        title: "Berhasil",
+        description: "Password berhasil diubah. Silakan login kembali.",
         status: "success",
         duration: 3000,
         isClosable: true,
@@ -89,8 +90,8 @@ function ForgotPassword() {
       navigate("/login");
     } else {
       toast({
-        title: "There is an error",
-        description: "The user with the email was not found.",
+        title: "Terjadi kesalahan",
+        description: "Pengguna dengan email tersebut tidak ditemukan.",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -101,12 +102,12 @@ function ForgotPassword() {
 
   // Fungsi untuk menampilkan/menyembunyikan password baru
   const toggleNewPasswordVisibility = () => {
-    setShowNewPassword(!showNewPassword);
+    setTampilkanPasswordBaru(!tampilkanPasswordBaru);
   };
 
   // Fungsi untuk menampilkan/menyembunyikan konfirmasi password baru
   const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
+    setTampilkanKonfirmasiPassword(!tampilkanKonfirmasiPassword);
   };
 
   return (
@@ -116,7 +117,7 @@ function ForgotPassword() {
         <div className="w-full lg:w-1/2 h-full relative">
           <img
             src={heroImage}
-            alt="Forgot Password Image"
+            alt="Lupa Password Gambar"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
@@ -127,7 +128,7 @@ function ForgotPassword() {
             />
             <h1 className="text-4xl font-bold text-white-255">SawiQu</h1>
             <p className="text-white-255 font-mono text-sm mb-4">
-              Product Fresh and Cool
+              Produk Segar dan Keren
             </p>
           </div>
         </div>
@@ -135,9 +136,7 @@ function ForgotPassword() {
 
       {/* Formulir untuk mereset password */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-4">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">
-          Forgot Password
-        </h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">Lupa Password</h1>
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
           <form onSubmit={handleResetPassword}>
             {/* Input untuk email */}
@@ -150,7 +149,7 @@ function ForgotPassword() {
               <input
                 type="email"
                 id="email"
-                placeholder="Enter your email"
+                placeholder="Masukkan email Anda"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={`w-full px-3 py-2 border ${
@@ -169,15 +168,15 @@ function ForgotPassword() {
               <label
                 htmlFor="newPassword"
                 className="block mb-2 text-sm font-medium text-gray-700">
-                New password
+                Password Baru
               </label>
               <div className="relative">
                 <input
-                  type={showNewPassword ? "text" : "password"}
+                  type={tampilkanPasswordBaru ? "text" : "password"}
                   id="newPassword"
-                  placeholder="Enter a new password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="Masukkan password baru"
+                  value={passwordBaru}
+                  onChange={(e) => setPasswordBaru(e.target.value)}
                   className={`w-full px-3 py-2 border ${
                     passwordError
                       ? "border-red-500 focus:ring-red-500 focus:border-red-500"
@@ -190,7 +189,7 @@ function ForgotPassword() {
                       passwordError ? "text-red-500" : "text-gray-400"
                     }`}
                     onClick={toggleNewPasswordVisibility}>
-                    {showNewPassword ? (
+                    {tampilkanPasswordBaru ? (
                       <FaEyeSlash size={20} />
                     ) : (
                       <FaEye size={20} />
@@ -208,15 +207,15 @@ function ForgotPassword() {
               <label
                 htmlFor="confirmPassword"
                 className="block mb-2 text-sm font-medium text-gray-700">
-                Confirm New Password
+                Konfirmasi Password Baru
               </label>
               <div className="relative">
                 <input
-                  type={showConfirmPassword ? "text" : "password"}
+                  type={tampilkanKonfirmasiPassword ? "text" : "password"}
                   id="confirmPassword"
-                  placeholder="Confirm the new password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Konfirmasi password baru"
+                  value={konfirmasiPassword}
+                  onChange={(e) => setKonfirmasiPassword(e.target.value)}
                   className={`w-full px-3 py-2 border ${
                     passwordError
                       ? "border-red-500 focus:ring-red-500 focus:border-red-500"
@@ -229,7 +228,7 @@ function ForgotPassword() {
                       passwordError ? "text-red-500" : "text-gray-400"
                     }`}
                     onClick={toggleConfirmPasswordVisibility}>
-                    {showConfirmPassword ? (
+                    {tampilkanKonfirmasiPassword ? (
                       <FaEyeSlash size={20} />
                     ) : (
                       <FaEye size={20} />
@@ -247,7 +246,7 @@ function ForgotPassword() {
               <button
                 type="submit"
                 className="py-2 px-4 bg-green-800 text-white-255 font-semibold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                Send Request
+                Kirim Permintaan
               </button>
             </div>
           </form>
@@ -255,7 +254,7 @@ function ForgotPassword() {
           {/* Tautan kembali ke halaman login */}
           <div className="mt-4 text-center">
             <RouterLink to="/login" className="text-green-600 hover:underline">
-              Return to login page
+              Kembali ke halaman login
             </RouterLink>
           </div>
         </div>
@@ -264,4 +263,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default LupaPassword;

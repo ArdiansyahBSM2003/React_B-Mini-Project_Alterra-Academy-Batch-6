@@ -2,7 +2,7 @@ import React from "react";
 import heroImage from "../assets/hero_HamaScan.png";
 import { Link } from "react-router-dom";
 
-const AboutUs = () => {
+const TentangKami = () => {
   return (
     <div className="min-h-screen py-14 px-5 flex justify-center items-center">
       <div className="container mx-auto mr-10 ml-5 p-2">
@@ -57,4 +57,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default TentangKami;

@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import farmerImage from "../assets/bg_hero.png";
+import gambarPetani from "../assets/bg_hero.png";
 import { Link } from "react-router-dom";
 
 // Komponen untuk halaman utama aplikasi
-const LandingPage = () => {
+const HalamanUtama = () => {
   return (
     <>
       {/* Bagian header */}
@@ -39,8 +39,8 @@ const LandingPage = () => {
             {/* Bagian gambar petani */}
             <div className="relative mt-5">
               <img
-                src={farmerImage}
-                alt="Farmer"
+                src={gambarPetani}
+                alt="Petani"
                 className="w-full md:w-full h-auto ml-4 transform hover:scale-105 "
               />
             </div>
@@ -51,4 +51,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default HalamanUtama;

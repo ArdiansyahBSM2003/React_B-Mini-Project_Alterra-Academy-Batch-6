@@ -2,55 +2,56 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function Consult_OpenAi() {
+function Konsultasi_OpenAi() {
   // State untuk menyimpan pertanyaan, jawaban, daftar percakapan, dan lainnya
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [conversations, setConversations] = useState([]);
-  const [editingIndex, setEditingIndex] = useState(-1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [pertanyaan, setPertanyaan] = useState("");
+  const [jawaban, setJawaban] = useState("");
+  const [percakapan, setPercakapan] = useState([]);
+  const [indeksEdit, setIndeksEdit] = useState(-1);
+  const [sedangMemuat, setSedangMemuat] = useState(false);
+  const [kesalahan, setKesalahan] = useState(null);
 
   // URL API dan efek samping untuk mendapatkan percakapan saat komponen dimuat
   const apiUrl = import.meta.env.VITE_MOCK_API;
+
   useEffect(() => {
-    fetchConversations();
+    fetchPercakapan();
   }, []);
 
   // Fungsi untuk mendapatkan percakapan dari API
-  async function fetchConversations() {
+  async function fetchPercakapan() {
     try {
       const response = await axios.get(apiUrl);
-      setConversations(response.data);
+      setPercakapan(response.data);
     } catch (error) {
-      console.error("Error fetching conversations:", error);
-      setError("Failed to fetch conversations");
+      console.error("Terjadi kesalahan saat mengambil percakapan:", error);
+      setKesalahan("Gagal mengambil percakapan");
     }
   }
 
   // Fungsi untuk menghasilkan jawaban untuk pertanyaan tertentu
-  async function generateAnswerForQuestion(question) {
+  async function generateAnswerForQuestion(pertanyaan) {
     try {
       // Deteksi jenis pertanyaan berdasarkan kontennya
-      const isCabbageRelated = question.toLowerCase().includes("sawi");
-      const isIdentityQuestion = question
+      const terkaitSawi = pertanyaan.toLowerCase().includes("sawi");
+      const pertanyaanIdentitas = pertanyaan
         .toLowerCase()
         .includes("bisakah kamu membantu saya", "kamu siapa?");
-      const isOffensiveQuestion =
+      const pertanyaanKasara =
         /\b(fuck|sialan|anjing|tolol|njirt|dog|stupid|pussy|babi|cunt)\b/i.test(
-          question
+          pertanyaan
         );
 
       // Logika untuk memberikan jawaban berdasarkan jenis pertanyaan
-      if (!isCabbageRelated && !isIdentityQuestion && !isOffensiveQuestion) {
+      if (!terkaitSawi && !pertanyaanIdentitas && !pertanyaanKasara) {
         return "Maaf, saya hanya dapat menjawab pertanyaan terkait dengan sayuran sawi.";
       }
 
-      if (isOffensiveQuestion) {
+      if (pertanyaanKasara) {
         return "Mohon maaf, saya tidak dapat menjawab pertanyaan yang mengandung kata-kata kasar atau tidak pantas. Sebagai AI yang bekerja dalam industri profesional, saya harus menjaga bahasa yang sopan dan ramah.";
       }
 
-      if (isIdentityQuestion) {
+      if (pertanyaanIdentitas) {
         return "Saya adalah AI yang diprogram untuk menjawab pertanyaan seputar sayuran sawi. Saya akan dengan senang hati membantu Anda dengan pertanyaan-pertanyaan terkait topik tersebut.";
       }
 
@@ -61,83 +62,87 @@ function Consult_OpenAi() {
         }`,
         method: "POST",
         data: {
-          contents: [{ parts: [{ text: question }] }],
+          contents: [{ parts: [{ text: pertanyaan }] }],
         },
       });
 
       return response.data.candidates[0].content.parts[0].text;
     } catch (error) {
       console.error("Error yields answer, try again!:", error);
-      throw new Error("Failed to produce an answer, try again!");
+      throw new Error("Gagal menghasilkan jawaban, coba lagi!");
     }
   }
 
   // Fungsi untuk menghasilkan jawaban
   async function generateAnswer() {
-    setIsLoading(true);
-    setError(null);
+    setSedangMemuat(true);
+    setKesalahan(null);
     try {
-      const newAnswer = await generateAnswerForQuestion(question);
-      setAnswer(newAnswer);
+      const jawabanBaru = await generateAnswerForQuestion(pertanyaan);
+      setJawaban(jawabanBaru);
       // Simpan percakapan baru dan tanggapan dari server
-      const newConversation = { question, answer: newAnswer };
-      const response = await axios.post(apiUrl, newConversation);
-      setConversations([...conversations, response.data]);
-      setQuestion("");
+      const percakapanBaru = { pertanyaan, jawaban: jawabanBaru };
+      const response = await axios.post(apiUrl, percakapanBaru);
+      setPercakapan([...percakapan, response.data]);
+      setPertanyaan("");
     } catch (error) {
-      setError(error.message);
+      setKesalahan(error.message);
     }
-    setIsLoading(false);
+    setSedangMemuat(false);
   }
 
   // Fungsi untuk memulai mode pengeditan percakapan
-  async function editConversation(index) {
-    setIsLoading(true);
-    setError(null);
-    setEditingIndex(index);
-    setQuestion(conversations[index].question);
-    setAnswer(conversations[index].answer);
-    setIsLoading(false);
+  async function editPercakapan(indeks) {
+    setSedangMemuat(true);
+    setKesalahan(null);
+    setIndeksEdit(indeks);
+    setPertanyaan(percakapan[indeks].pertanyaan);
+    setJawaban(percakapan[indeks].jawaban);
+    setSedangMemuat(false);
   }
 
   // Fungsi untuk menyimpan percakapan yang diedit
-  async function saveConversation(index) {
-    setIsLoading(true);
-    setError(null);
+  async function simpanPercakapan(indeks) {
+    setSedangMemuat(true);
+    setKesalahan(null);
     try {
-      const updatedConversation = { ...conversations[index], question, answer };
+      const percakapanDiperbarui = {
+        ...percakapan[indeks],
+        pertanyaan,
+        jawaban,
+      };
       const response = await axios.put(
-        `${apiUrl}/${conversations[index].id}`,
-        updatedConversation
+        `${apiUrl}/${percakapan[indeks].id}`,
+        percakapanDiperbarui
       );
       // Update percakapan dengan jawaban yang baru dihasilkan
-      const newConversations = [...conversations];
-      newConversations[index] = response.data;
-      const updatedAnswer = await generateAnswerForQuestion(question);
-      newConversations[index].answer = updatedAnswer;
-      await axios.put(`${apiUrl}/${conversations[index].id}`, {
+      const percakapanBaru = [...percakapan];
+      percakapanBaru[indeks] = response.data;
+      const jawabanDiperbarui = await generateAnswerForQuestion(pertanyaan);
+      percakapanBaru[indeks].jawaban = jawabanDiperbarui;
+      await axios.put(`${apiUrl}/${percakapan[indeks].id}`, {
         ...response.data,
-        answer: updatedAnswer,
+        jawaban: jawabanDiperbarui,
       });
-      setConversations(newConversations);
-      setEditingIndex(-1);
-      setQuestion("");
-      setAnswer("");
+      setPercakapan(percakapanBaru);
+      setIndeksEdit(-1);
+      setPertanyaan("");
+      setJawaban("");
     } catch (error) {
-      setError(error.message);
+      setKesalahan(error.message);
     }
-    setIsLoading(false);
+    setSedangMemuat(false);
   }
 
   // Fungsi untuk menghapus percakapan
-  async function deleteConversation(index) {
+  async function hapusPercakapan(indeks) {
     try {
-      await axios.delete(`${apiUrl}/${conversations[index].id}`);
-      const newConversations = [...conversations];
-      newConversations.splice(index, 1);
-      setConversations(newConversations);
+      await axios.delete(`${apiUrl}/${percakapan[indeks].id}`);
+      const percakapanBaru = [...percakapan];
+      percakapanBaru.splice(indeks, 1);
+      setPercakapan(percakapanBaru);
     } catch (error) {
-      setError("Failed to delete conversation");
+      setKesalahan("Gagal menghapus percakapan");
     }
   }
 
@@ -145,7 +150,7 @@ function Consult_OpenAi() {
     <div className="font-roboto bg-gray-100 min-h-screen py-10 ">
       <div className="max-w-6xl mx-auto overflow-hidden mt-20">
         <h1 className="text-4xl font-bold text-center font-serif">
-          Consultation with OpenAI
+          Konsultasi dengan OpenAI
         </h1>
         <p className="text-lg text-center text-gray-700 mt-4">
           Dengan kerjasama OpenAI, kami menyediakan layanan konsultasi OpenAI,
@@ -156,32 +161,32 @@ function Consult_OpenAi() {
       <div className="max-w-7xl py-2 px-2 mx-auto bg-white-255 rounded-md shadow-md overflow-hidden mt-10">
         <div className="flex flex-col md:flex-row p-2">
           <div className="w-full md:w-2/3 p-10 m-20  mx-auto">
-            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {kesalahan && <p className="text-red-500 mb-4">{kesalahan}</p>}
             <div className="mb-4">
               <textarea
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
                 rows="10"
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder="Enter your question here..."></textarea>
+                value={pertanyaan}
+                onChange={(e) => setPertanyaan(e.target.value)}
+                placeholder="Masukkan pertanyaan Anda di sini..."></textarea>
             </div>
             <div className="text-center">
               <button
                 className={`px-4 py-2 rounded-md text-gray-800 ${
-                  question
+                  pertanyaan
                     ? "bg-gray-400 hover:bg-gray-500 hover:text-white-255"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
                 onClick={
-                  editingIndex === -1
+                  indeksEdit === -1
                     ? generateAnswer
-                    : () => saveConversation(editingIndex)
+                    : () => simpanPercakapan(indeksEdit)
                 }
-                disabled={!question}>
-                {editingIndex === -1 ? "Generate Answer" : "Save Answer"}
+                disabled={!pertanyaan}>
+                {indeksEdit === -1 ? "Hasilkan Jawaban" : "Simpan Jawaban"}
               </button>
             </div>
-            {isLoading && (
+            {sedangMemuat && (
               <p className="mt-10 text-center">
                 <span className="loading loading-spinner text-success w-20 h-20"></span>
               </p>
@@ -189,13 +194,13 @@ function Consult_OpenAi() {
           </div>
           <div className="w-full md:w-2/3 bg-gray-200 text-gray-800 p-8">
             <h2 className="text-xl font-bold mb-4 text-center">
-              Conversation List
+              Daftar Percakapan
             </h2>
             <div className="max-h-screen overflow-y-auto">
               <ul>
-                {conversations.map((conversation, index) => (
+                {percakapan.map((percakapan, indeks) => (
                   <li
-                    key={conversation.id}
+                    key={percakapan.id}
                     className="mb-4 last:mb-0 border border-gray-300 p-4 rounded-md">
                     <div className="chat chat-start">
                       <div className="chat-image avatar hidden sm:block">
@@ -208,7 +213,7 @@ function Consult_OpenAi() {
                       </div>
                       <div className="mb-2 chat-bubble">
                         <p className="font-bold text-sm sm:text-base">
-                          you : {conversation.question}
+                          Anda: {percakapan.pertanyaan}
                         </p>
                       </div>
                     </div>
@@ -223,20 +228,20 @@ function Consult_OpenAi() {
                       </div>
                       <div className="mb-2 chat-bubble">
                         <p className="text-sm sm:text-base">
-                          AI : {conversation.answer}
+                          AI: {percakapan.jawaban}
                         </p>
                       </div>
                     </div>
                     <div className="flex justify-center mb-2 join py-2">
                       <button
                         className="text-blue-400 hover:text-blue-600 btn join-item mb-2 "
-                        onClick={() => editConversation(index)}>
+                        onClick={() => editPercakapan(indeks)}>
                         Edit
                       </button>
                       <button
                         className="text-red-400  hover:text-red-600 btn join-item"
-                        onClick={() => deleteConversation(index)}>
-                        Delete
+                        onClick={() => hapusPercakapan(indeks)}>
+                        Hapus
                       </button>
                     </div>
                   </li>
@@ -249,4 +254,4 @@ function Consult_OpenAi() {
     </div>
   );
 }
-export default Consult_OpenAi;
+export default Konsultasi_OpenAi;

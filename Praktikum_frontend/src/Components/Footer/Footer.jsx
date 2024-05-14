@@ -4,41 +4,41 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      {/* Footer section */}
+      {/* Bagian Footer */}
       <footer className="font-roboto">
         <div className="footer p-10 bg-gray-400 text-gray-content flex-wrap justify-center md:justify-between">
-          {/* Services section */}
+          {/* Bagian Layanan */}
           <nav className="mb-4">
-            <h6 className="footer-title">Services</h6>
+            <h6 className="footer-title">Layanan</h6>
             <a className="link link-hover">Branding</a>
-            <a className="link link-hover">Design</a>
-            <a className="link link-hover">Marketing</a>
-            <a className="link link-hover">Advertisement</a>
+            <a className="link link-hover">Desain</a>
+            <a className="link link-hover">Pemasaran</a>
+            <a className="link link-hover">Iklan</a>
           </nav>
-          {/* Company section */}
+          {/* Bagian Perusahaan */}
           <nav className="mb-4">
-            <h6 className="footer-title">Company</h6>
-            <Link to="/aboutUs" className="link link-hover">
-              About us
+            <h6 className="footer-title">Perusahaan</h6>
+            <Link to="/tentang" className="link link-hover">
+              Tentang
             </Link>
-            <Link to="/contactUs" className="link link-hover">
-              Contact
+            <Link to="/kontak" className="link link-hover">
+              Kontak
             </Link>
-            <Link to="/consult" className="link link-hover">
-              Consultation
+            <Link to="/konsultasi" className="link link-hover">
+              Konsultasi
             </Link>
             <Link to="/hamaScan" className="link link-hover">
               HamaScan
             </Link>
           </nav>
-          {/* Legal section */}
+          {/* Bagian Legal */}
           <nav className="mb-4">
             <h6 className="footer-title">Legal</h6>
-            <a className="link link-hover">Terms of use</a>
-            <a className="link link-hover">Privacy policy</a>
-            <a className="link link-hover">Cookie policy</a>
+            <a className="link link-hover">Syarat Penggunaan</a>
+            <a className="link link-hover">Kebijakan Privasi</a>
+            <a className="link link-hover">Kebijakan Cookie</a>
           </nav>
-          {/* Newsletter section */}
+          {/* Bagian Newsletter */}
           <form className="flex flex-wrap justify-center">
             <h6 className="footer-title">Newsletter</h6>
             <fieldset className="form-control w-full">
@@ -48,19 +48,19 @@ const Footer = () => {
               <div className="join flex flex-wrap">
                 <input
                   type="text"
-                  placeholder="username@site.com"
+                  placeholder="nama@site.com"
                   className="input input-bordered join-item w-full mb-2 sm:mb-0 sm:w-auto"
                 />
                 <button className="btn bg-gray-500 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-600 text-white-255 join-item w-full sm:w-auto">
-                  Subscribe
+                  Berlangganan
                 </button>
               </div>
             </fieldset>
           </form>
         </div>
-        {/* Bottom section */}
+        {/* Bagian Bawah */}
         <div className="footer items-center p-4 bg-neutral text-neutral-content flex flex-wrap justify-center md:justify-between">
-          {/* Copyright section */}
+          {/* Bagian Hak Cipta */}
           <aside className="items-center mb-4 md:mb-0">
             <svg
               width="36"
@@ -72,9 +72,9 @@ const Footer = () => {
               className="fill-current mr-2">
               <path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
             </svg>
-            <p>Copyright © 2024 - Ardiansyah Bsm</p>
+            <p>Hak Cipta © 2024 - Ardiansyah Bsm</p>
           </aside>
-          {/* Social media icons section */}
+          {/* Bagian Ikon Media Sosial */}
           <nav className="grid grid-cols-3 gap-4">
             <a>
               <svg

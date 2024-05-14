@@ -7,15 +7,15 @@ import {
   Navigate,
 } from "react-router-dom";
 import Header from "./Components/Header/Header";
-import LandingPage from "./Components/LandingPage/LandingPage";
-import About from "./Components/About/AboutUs";
-import Contact from "./Components/Contact/Contact";
+import HalamanUtama from "./Components/HalamanUtama/HalamanUtama";
+import TentangKami from "./Components/TentangKami/TentangKami";
+import KontakKami from "./Components/KontakKami/KontakKami";
 import Login from "./Pages/Login/Login";
-import Register from "./Pages/Register/Register";
+import Daftar from "./Pages/Daftar/Daftar";
 import Footer from "./Components/Footer/Footer";
-import ConsultationOpenAI from "./Components/Consult_OpenAi/Consult_OpenAi";
+import Konsultasi_OpenAi from "./Components/Konsultasi_OpenAi/Konsultasi_OpenAi";
 import HamaScanApi from "./Components/HamaScanAPI_Flask/HamaScan";
-import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
+import LupaPassword from "./Pages/LupaPassword/LupaPassword";
 
 function App() {
   // State untuk menyimpan data pengguna dan status otentikasi
@@ -49,11 +49,11 @@ function App() {
         <>
           <Header isAuthenticated={isUserAuthenticated} />
           <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/consult" element={<ConsultationOpenAI />} />
-            <Route path="/aboutUs" element={<About />} />
-            <Route path="/contactUs" element={<Contact />} />
-            <Route path="/landingPage" element={<LandingPage />} />
+            <Route path="/" element={<HalamanUtama />} />
+            <Route path="/konsultasi" element={<Konsultasi_OpenAi />} />
+            <Route path="/tentang" element={<TentangKami />} />
+            <Route path="/kontak" element={<KontakKami />} />
+            <Route path="/halamanUtama" element={<HalamanUtama />} />
             <Route path="/hamaScan" element={<HamaScanApi />} />
           </Routes>
           <Footer isAuthenticated={isUserAuthenticated} />
@@ -72,10 +72,10 @@ function App() {
             }
           />
           <Route
-            path="/register"
-            element={<Register users={users} setUsers={setUsers} />}
+            path="/daftar"
+            element={<Daftar users={users} setUsers={setUsers} />}
           />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/lupaPassword" element={<LupaPassword />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       )}
