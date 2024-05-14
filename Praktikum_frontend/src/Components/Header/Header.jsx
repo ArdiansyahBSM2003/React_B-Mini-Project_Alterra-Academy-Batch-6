@@ -4,7 +4,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
-import { BiLogoReact } from "react-icons/bi";
 import axios from "axios";
 import logo from "../../Components/assets/logo.png";
 
@@ -81,7 +80,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
 
   // Daftar menu navigasi
   const menuItems = [
-    { label: "Halaman Utama", path: "/" },
+    { label: "Home", path: "/" },
     {
       label: "Konsultasi",
       dropdown: [
@@ -103,7 +102,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
   return (
     <div>
       <nav
-        className={`font-roboto pe-10 p-8 bg-gray-100 shadow-lg rounded-md md:flex md:justify-between md:w-auto min-w-full md:h-[60px] ${
+        className={`font-roboto pe-8 p-8 bg-gray-100 shadow-lg rounded-md md:flex md:justify-between md:w-auto min-w-full md:h-[60px] ${
           isHeaderVisible ? "fixed top-0 w-full" : "absolute"
         }`}>
         <div className="flex justify-between items-center">

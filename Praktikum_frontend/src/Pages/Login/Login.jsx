@@ -22,7 +22,7 @@ const Login = ({ setIsAuthenticated }) => {
   const toast = useToast();
 
   useEffect(() => {
-    // Menetapkan deteksi layar besar
+    // Mengatur deteksi layar besar
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
@@ -64,7 +64,7 @@ const Login = ({ setIsAuthenticated }) => {
     }
 
     if (password.length < 8) {
-      setPasswordError("Kata sandi harus minimal 8 karakter.");
+      setPasswordError("Kata sandi minimal harus 8 karakter.");
       isValid = false;
     } else {
       setPasswordError("");
@@ -89,7 +89,7 @@ const Login = ({ setIsAuthenticated }) => {
       // Login berhasil
       toast({
         title: "Login berhasil!",
-        status: "success",
+        status: "berhasil",
         duration: 3000,
         isClosable: true,
         position: "top",
@@ -110,8 +110,8 @@ const Login = ({ setIsAuthenticated }) => {
     } else {
       // Login gagal
       toast({
-        title: "Login gagal",
-        description: "Email atau kata sandi salah.",
+        title: "Login failed",
+        description: "Incorrect email or password.",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -126,7 +126,7 @@ const Login = ({ setIsAuthenticated }) => {
         <div className="w-full lg:w-1/2 h-full relative">
           <img
             src={heroImage}
-            alt="Gambar Lupa Kata Sandi"
+            alt="Forgot Password Image"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
@@ -137,7 +137,7 @@ const Login = ({ setIsAuthenticated }) => {
             />
             <h1 className="text-4xl font-bold text-white-255">SawiQu</h1>
             <p className="text-white-255 font-mono text-sm mb-4">
-              Produk Segar dan Keren
+              Product Fresh and Cool
             </p>
           </div>
         </div>
@@ -224,7 +224,7 @@ const Login = ({ setIsAuthenticated }) => {
               <RouterLink
                 to="/lupaPassword"
                 className="text-sm text-green-800 hover:text-green-800">
-                Lupa kata sandi?
+                Lupa password?
               </RouterLink>
             </div>
 
@@ -239,10 +239,8 @@ const Login = ({ setIsAuthenticated }) => {
 
           <p className="mt-4 text-center text-gray-800">
             Belum punya akun?
-            <RouterLink
-              to="/daftar"
-              className="text-green-800 hover:underline">
-              Daftar di sini
+            <RouterLink to="/daftar" className="text-green-800 hover:underline">
+              Daftar disini
             </RouterLink>
           </p>
         </div>

@@ -18,15 +18,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Daftar = () => {
   const navigate = useNavigate();
   const toast = useToast();
-  const [isLayarBesar, setIsLayarBesar] = useState(false);
-  const [tampilkanSandi, setTampilkanSandi] = useState(false);
-  const [tampilkanKonfirmasiSandi, setTampilkanKonfirmasiSandi] =
-    useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     // Mendeteksi layar besar
     const handleResize = () => {
-      setIsLayarBesar(window.innerWidth >= 1024);
+      setIsLargeScreen(window.innerWidth >= 1024);
     };
 
     handleResize();
@@ -35,71 +34,71 @@ const Daftar = () => {
   }, []);
 
   // Nilai awal dan skema validasi untuk formulir
-  const nilaiAwal = {
-    namaDepan: "",
-    namaBelakang: "",
+  const initialValues = {
+    firstName: "",
+    lastName: "",
     username: "",
     email: "",
-    sandi: "",
-    konfirmasiSandi: "",
+    password: "",
+    confirmPassword: "",
   };
 
-  const skemaValidasi = Yup.object().shape({
-    namaDepan: Yup.string()
-      .min(3, "Nama depan minimal terdiri dari 3 karakter")
+  const validationSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .min(3, "Nama depan harus minimal 3 karakter")
       .required("Nama depan diperlukan"),
-    namaBelakang: Yup.string()
-      .min(3, "Nama belakang minimal terdiri dari 3 karakter")
+    lastName: Yup.string()
+      .min(3, "Nama belakang harus minimal 3 karakter")
       .required("Nama belakang diperlukan"),
     username: Yup.string().required("Username diperlukan"),
     email: Yup.string()
       .email("Alamat email tidak valid")
       .required("Email diperlukan"),
-    sandi: Yup.string()
-      .min(8, "Sandi minimal terdiri dari 8 karakter")
-      .required("Sandi diperlukan"),
-    konfirmasiSandi: Yup.string()
-      .oneOf([Yup.ref("sandi"), null], "Sandi harus sama")
-      .required("Konfirmasi sandi diperlukan"),
+    password: Yup.string()
+      .min(8, "Kata sandi harus minimal 8 karakter")
+      .required("Kata sandi diperlukan"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Kata sandi harus cocok")
+      .required("Konfirmasi kata sandi diperlukan"),
   });
 
   // Penanganan submit formulir
-  const handleSubmit = (nilai, { setSubmitting }) => {
-    const { namaDepan, namaBelakang, username, email, sandi } = nilai;
+  const handleSubmit = (values, { setSubmitting }) => {
+    const { firstName, lastName, username, email, password } = values;
 
-    let pengguna = JSON.parse(localStorage.getItem("pengguna")) || [];
-    pengguna.push({ namaDepan, namaBelakang, username, email, sandi });
-    localStorage.setItem("pengguna", JSON.stringify(pengguna));
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push({ firstName, lastName, username, email, password });
+    localStorage.setItem("users", JSON.stringify(users));
 
     toast({
       title: "Pendaftaran berhasil! Silakan masuk.",
-      status: "success",
+      status: "berhasil",
       duration: 3000,
       isClosable: true,
       position: "top",
     });
 
     setSubmitting(false);
-    navigate("/masuk");
+    navigate("/login");
   };
 
   // Fungsi untuk menampilkan/menyembunyikan kata sandi
   const togglePasswordVisibility = () => {
-    setTampilkanSandi(!tampilkanSandi);
+    setShowPassword(!showPassword);
   };
 
   const toggleConfirmPasswordVisibility = () => {
-    setTampilkanKonfirmasiSandi(!tampilkanKonfirmasiSandi);
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   return (
     <div className="flex flex-col lg:flex-row h-screen font-serif">
       {/* Tampilan gambar hanya pada layar besar */}
-      {isLayarBesar && (
+      {isLargeScreen && (
         <div className="w-full lg:w-1/2 h-full relative">
           <img
             src={heroImage}
-            alt="Gambar Lupa Sandi"
+            alt="Gambar Lupa Kata Sandi"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
@@ -123,8 +122,8 @@ const Daftar = () => {
             Daftar
           </h1>
           <Formik
-            initialValues={nilaiAwal}
-            validationSchema={skemaValidasi}
+            initialValues={initialValues}
+            validationSchema={validationSchema}
             onSubmit={handleSubmit}>
             {({ isSubmitting }) => (
               <Form>
@@ -133,9 +132,9 @@ const Daftar = () => {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <FormControl>
                       <FormLabel>Nama Depan</FormLabel>
-                      <Field type="text" name="namaDepan" as={Input} />
+                      <Field type="text" name="firstName" as={Input} />
                       <ErrorMessage
-                        name="namaDepan"
+                        name="firstName"
                         component="div"
                         className="text-red-500"
                       />
@@ -144,9 +143,9 @@ const Daftar = () => {
                   <div className="w-full md:w-1/2 px-3">
                     <FormControl>
                       <FormLabel>Nama Belakang</FormLabel>
-                      <Field type="text" name="namaBelakang" as={Input} />
+                      <Field type="text" name="lastName" as={Input} />
                       <ErrorMessage
-                        name="namaBelakang"
+                        name="lastName"
                         component="div"
                         className="text-red-500"
                       />
@@ -179,18 +178,18 @@ const Daftar = () => {
                 {/* Input untuk kata sandi */}
                 <div className="mb-6 relative">
                   <label
-                    htmlFor="sandi"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-700">
-                    Sandi Anda
+                    Kata Sandi Anda
                   </label>
                   <div className="relative">
                     <Field
-                      type={tampilkanSandi ? "text" : "password"}
-                      id="sandi"
-                      name="sandi"
+                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      name="password"
                       as={Input}
                       className={`w-full px-3 py-2 border ${
-                        tampilkanSandi
+                        showPassword
                           ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                           : "border-gray-300 focus:ring-green-800 focus:border-green-800"
                       } rounded-md`}
@@ -198,10 +197,10 @@ const Daftar = () => {
                     <div className="absolute inset-y-0 right-0 flex items-center pr-5 top-1/2 transform -translate-y-1/2">
                       <div
                         className={`cursor-pointer ${
-                          tampilkanSandi ? "text-red-500" : "text-gray-400"
+                          showPassword ? "text-red-500" : "text-gray-400"
                         }`}
                         onClick={togglePasswordVisibility}>
-                        {tampilkanSandi ? (
+                        {showPassword ? (
                           <FaEyeSlash size={20} />
                         ) : (
                           <FaEye size={20} />
@@ -210,7 +209,7 @@ const Daftar = () => {
                     </div>
                   </div>
                   <ErrorMessage
-                    name="sandi"
+                    name="password"
                     component="div"
                     className="mt-2 text-sm text-red-500"
                   />
@@ -219,18 +218,18 @@ const Daftar = () => {
                 {/* Input untuk konfirmasi kata sandi */}
                 <div className="mb-6 relative">
                   <label
-                    htmlFor="konfirmasiSandi"
+                    htmlFor="confirmPassword"
                     className="block mb-2 text-sm font-medium text-gray-700">
-                    Konfirmasi Sandi Anda
+                    Konfirmasi Kata Sandi Anda
                   </label>
                   <div className="relative">
                     <Field
-                      type={tampilkanKonfirmasiSandi ? "text" : "password"}
-                      id="konfirmasiSandi"
-                      name="konfirmasiSandi"
+                      type={showConfirmPassword ? "text" : "password"}
+                      id="confirmPassword"
+                      name="confirmPassword"
                       as={Input}
                       className={`w-full px-3 py-2 border ${
-                        tampilkanKonfirmasiSandi
+                        showConfirmPassword
                           ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                           : "border-gray-300 focus:ring-green-800 focus:border-green-800"
                       } rounded-md`}
@@ -238,12 +237,10 @@ const Daftar = () => {
                     <div className="absolute inset-y-0 right-0 flex items-center pr-5 top-1/2 transform -translate-y-1/2">
                       <div
                         className={`cursor-pointer ${
-                          tampilkanKonfirmasiSandi
-                            ? "text-red-500"
-                            : "text-gray-400"
+                          showConfirmPassword ? "text-red-500" : "text-gray-400"
                         }`}
                         onClick={toggleConfirmPasswordVisibility}>
-                        {tampilkanKonfirmasiSandi ? (
+                        {showConfirmPassword ? (
                           <FaEyeSlash size={20} />
                         ) : (
                           <FaEye size={20} />
@@ -252,7 +249,7 @@ const Daftar = () => {
                     </div>
                   </div>
                   <ErrorMessage
-                    name="konfirmasiSandi"
+                    name="confirmPassword"
                     component="div"
                     className="mt-2 text-sm text-red-500"
                   />
@@ -275,7 +272,7 @@ const Daftar = () => {
           {/* Tautan untuk login jika sudah memiliki akun */}
           <Text className="mt-2 text-center text-gray-600">
             Sudah memiliki akun?
-            <RouterLink to="/masuk" className="text-green-600 hover:underline">
+            <RouterLink to="/login" className="text-green-600 hover:underline">
               Masuk di sini
             </RouterLink>
           </Text>
