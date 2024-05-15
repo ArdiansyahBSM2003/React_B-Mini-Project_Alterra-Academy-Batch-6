@@ -32,17 +32,17 @@ function Konsultasi_OpenAi() {
   async function generateAnswerForQuestion(pertanyaan) {
     try {
       // Deteksi jenis pertanyaan berdasarkan kontennya
-      const terkaitSawi = pertanyaan.toLowerCase().includes("sawi");
+      const terkaitSawi = pertanyaan.toLowerCase().includes("sawi"); // includes -> cek apakah ada kata sawi
       const pertanyaanIdentitas = pertanyaan
         .toLowerCase()
-        .includes("kamu siapa?");
-      const pertanyaanKasara =
+        .includes("kamu siapa?"); // includes -> untuk cek apakah ada kata kamu siapa?
+      const pertanyaanKasar =
         /\b(fuck|sialan|anjing|tolol|njirt|dog|stupid|pussy|babi|cunt)\b/i.test(
           pertanyaan
         );
 
       // Logika untuk memberikan jawaban berdasarkan jenis pertanyaan
-      if (pertanyaanKasara) {
+      if (pertanyaanKasar) {
         return "Mohon maaf, saya tidak dapat menjawab pertanyaan yang mengandung kata-kata kasar atau tidak pantas. Sebagai AI yang bekerja dalam industri profesional, saya harus menjaga bahasa yang sopan dan ramah.";
       } else if (pertanyaanIdentitas) {
         return "Saya adalah AI yang diprogram untuk menjawab pertanyaan seputar sayuran sawi. Saya akan dengan senang hati membantu Anda dengan pertanyaan-pertanyaan terkait topik tersebut.";
@@ -78,7 +78,7 @@ function Konsultasi_OpenAi() {
       //kemudian dsimpan sebagai percakapan baru dan tanggapan dari server
       const percakapanBaru = { pertanyaan, jawaban: jawabanBaru };
       const response = await axios.post(apiUrl, percakapanBaru);
-      setPercakapan([...percakapan, response.data]); // ini itu untuk membarui list percakapan yang di lihat user
+      setPercakapan([...percakapan, response.data]); // untuk membarui list percakapan yang di lihat user
       setPertanyaan("");
     } catch (error) {
       setKesalahan(error.message);
@@ -89,7 +89,7 @@ function Konsultasi_OpenAi() {
   // Membuat fungsi untuk memulai mode pengeditan percakapan
   async function editPercakapan(indeks) {
     setSedangMemuat(false);
-    setKesalahan(null); //untuk menghapus error sebelumnya jika ada
+    setKesalahan(null);
     setIndeksEdit(indeks);
     setPertanyaan(percakapan[indeks].pertanyaan);
     setJawaban(percakapan[indeks].jawaban);
@@ -99,7 +99,7 @@ function Konsultasi_OpenAi() {
   // Membuat fungsi untuk menyimpan percakapan yang diedit
   async function simpanPercakapan(indeks) {
     setSedangMemuat(true);
-    setKesalahan(null); //untuk menghapus error sebelumnya jika ada
+    setKesalahan(null);
     try {
       const percakapanDiperbarui = {
         ...percakapan[indeks],
@@ -135,7 +135,7 @@ function Konsultasi_OpenAi() {
       await axios.delete(`${apiUrl}/${percakapan[indeks].id}`);
       const percakapanBaru = [...percakapan];
       percakapanBaru.splice(indeks, 1);
-      setPercakapan(percakapanBaru);
+      setPercakapan(percakapanBaru); // memperbarui state perckpn
     } catch (error) {
       setKesalahan("Gagal menghapus percakapan");
     }
