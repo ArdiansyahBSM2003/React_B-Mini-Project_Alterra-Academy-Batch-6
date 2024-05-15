@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
@@ -33,10 +30,12 @@ const Login = ({ setIsAuthenticated }) => {
   }, []);
 
   useEffect(() => {
-    // Memuat email yang diingat jika diingatkan sebelumnya
-    const storedEmail = localStorage.getItem("rememberedEmail");
-    if (storedEmail) {
-      setEmail(storedEmail);
+    // Memuat email dan password yang diingat jika diingatkan sebelumnya
+    const storedCredentials = localStorage.getItem("rememberedCredentials");
+    if (storedCredentials) {
+      const { email, password } = JSON.parse(storedCredentials);
+      setEmail(email);
+      setPassword(password);
       setRememberMe(true);
     }
   }, []);
@@ -98,9 +97,12 @@ const Login = ({ setIsAuthenticated }) => {
       setIsAuthenticated(true);
 
       if (rememberMe) {
-        localStorage.setItem("rememberedEmail", email);
+        localStorage.setItem(
+          "rememberedCredentials",
+          JSON.stringify({ email, password })
+        );
       } else {
-        localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("rememberedCredentials");
       }
 
       localStorage.setItem("isUserAuthenticated", "true");
@@ -196,7 +198,7 @@ const Login = ({ setIsAuthenticated }) => {
                       <FaEyeSlash size={20} />
                     ) : (
                       <FaEye size={20} />
-                    )}
+                    )}{" "}
                   </div>
                 </div>
               </div>
