@@ -23,12 +23,13 @@ function LupaPassword() {
   // State untuk menampilkan/menyembunyikan password baru dan konfirmasi password baru
   const [tampilkanPasswordBaru, setTampilkanPasswordBaru] = useState(false);
   const [tampilkanKonfirmasiPassword, setTampilkanKonfirmasiPassword] =
-    useState(false);
+    useState(false); // hook dari React Route
 
-  const navigate = useNavigate();
-  const toast = useToast();
+  const navigate = useNavigate(); // hook dari React Route
+  const toast = useToast(); // hook dari Chakra UI
 
   useEffect(() => {
+    // hook dari React Route
     // Mendeteksi layar besar
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);

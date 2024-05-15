@@ -16,8 +16,8 @@ import logo from "../../Components/assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Daftar = () => {
-  const navigate = useNavigate();
-  const toast = useToast();
+  const navigate = useNavigate(); // hook dari React Route
+  const toast = useToast(); // hook dari Chakra UI
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);

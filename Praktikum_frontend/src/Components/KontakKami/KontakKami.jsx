@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FaUserTie, FaEnvelopeOpenText, FaCommentDots } from "react-icons/fa";
+import { useToast } from "@chakra-ui/react"; // Import hook useToast dari Chakra UI
 
 const KontakKami = () => {
   // State untuk menyimpan nilai input dan status pengiriman
@@ -9,7 +9,6 @@ const KontakKami = () => {
   const [emailTujuan, setEmailTujuan] = useState("");
   const [subjek, setSubjek] = useState("");
   const [pesan, setPesan] = useState("");
-  const [berhasil, setBerhasil] = useState(false);
   const [error, setError] = useState({
     namaPengirim: "",
     emailTujuan: "",
@@ -17,9 +16,12 @@ const KontakKami = () => {
     pesan: "",
   });
 
+  const toast = useToast(); // Gunakan hook useToast untuk menampilkan notifikasi
+
   // Fungsi untuk mengirim email
   const kirimEmail = () => {
     const errorBaru = {};
+    // Validasi input
     if (!namaPengirim) errorBaru.namaPengirim = "Silakan masukkan nama Anda.";
     if (!emailTujuan)
       errorBaru.emailTujuan = "Silakan masukkan email penerima.";
@@ -31,7 +33,7 @@ const KontakKami = () => {
       return;
     }
 
-    // Menginisialisasi EmailJS
+    // Mengirim email menggunakan EmailJS
     emailjs.init("xVqXfrzaS2rIoSa9Y");
     const params = {
       sendername: namaPengirim,
@@ -42,12 +44,18 @@ const KontakKami = () => {
     const serviceID = "service_2003";
     const templateID = "template_tmwtrwh";
 
-    // Mengirim email menggunakan EmailJS
     emailjs
       .send(serviceID, templateID, params)
       .then(() => {
-        // Penanganan sukses
-        setBerhasil(true);
+        // Penanganan sukses: tampilkan notifikasi berhasil
+        toast({
+          title: "Pesan berhasil dikirim!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+        // Reset input dan error setelah berhasil dikirim
         setNamaPengirim("");
         setEmailTujuan("");
         setSubjek("");
@@ -58,32 +66,23 @@ const KontakKami = () => {
           subjek: "",
           pesan: "",
         });
-        setTimeout(() => setBerhasil(false), 3000);
       })
       .catch((error) => {
-        // Penanganan error
+        // Penanganan error: tampilkan notifikasi gagal
         console.error("Error sending message:", error);
-        setBerhasil(false);
-        setError({
-          namaPengirim: "",
-          emailTujuan: "",
-          subjek: "",
-          pesan: "Error sending message. Please try again later.",
+        toast({
+          title: "Error mengirim pesan. Silakan coba lagi nanti.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
         });
-        setTimeout(() => setError({ ...error, pesan: "" }), 3000);
       });
   };
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen p-10 bg-gray-100">
       <div className="w-full max-w-full p-5 mt-2 bg-gray-100">
-        {/* Pemberitahuan Sukses */}
-        {berhasil && (
-          <p role="alert" className="text-green-500 text-center mb-0">
-            <span>Pesan berhasil dikirim!!</span>
-          </p>
-        )}
-        {/* Bagian Judul */}
         <div className="flex flex-col md:flex-row items-center justify-center mb-8 mt-12">
           <h1 className="text-4xl font-bold text-gray-800 lg:mt-10">
             Kontak Kami
@@ -93,7 +92,6 @@ const KontakKami = () => {
           <div className="text-red-600 text-center">{error.pesan}</div>
         )}
         <div className="flex flex-col md:flex-row ">
-          {/* Bagian Informasi Kontak */}
           <div className="w-full md:w-1/3 p-6 bg-gray-200 shadow-lg rounded-md mr-4">
             <h2 className="text-xl font-bold mb-4 text-center">
               Informasi Kontak
@@ -110,9 +108,7 @@ const KontakKami = () => {
               Park, City, Country
             </p>
           </div>
-          {/* Form Kontak */}
           <div className="w-full md:w-2/3 p-6">
-            {/* Input Nama Pengirim */}
             <div className="mb-4 flex items-center">
               <FaUserTie className="text-xl text-gray-600 mr-4" />
               <input
@@ -127,7 +123,6 @@ const KontakKami = () => {
             {error.namaPengirim && (
               <div className="text-red-600">{error.namaPengirim}</div>
             )}
-            {/* Input Email Penerima */}
             <div className="mb-4 flex items-center">
               <FaEnvelopeOpenText className="text-xl text-gray-600 mr-4" />
               <input
@@ -142,7 +137,6 @@ const KontakKami = () => {
             {error.emailTujuan && (
               <div className="text-red-600">{error.emailTujuan}</div>
             )}
-            {/* Input Subjek */}
             <div className="mb-4 flex items-center">
               <FaCommentDots className="text-xl text-gray-600 mr-4" />
               <input
@@ -155,7 +149,6 @@ const KontakKami = () => {
               />
             </div>
             {error.subjek && <div className="text-red-600">{error.subjek}</div>}
-            {/* Input Pesan */}
             <div className="mb-6 flex items-start">
               <FaCommentDots className="text-xl text-gray-600 mr-4 mt-2" />
               <textarea
@@ -166,8 +159,6 @@ const KontakKami = () => {
                 className="w-full textarea textarea-bordered"
                 required></textarea>
             </div>
-
-            {/* Tombol Kirim Pesan */}
             <div className="flex justify-center items-center">
               <button
                 onClick={kirimEmail}

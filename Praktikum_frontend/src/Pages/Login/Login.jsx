@@ -18,8 +18,8 @@ const Login = ({ setIsAuthenticated }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate();
-  const toast = useToast();
+  const navigate = useNavigate(); // hook dari React Route
+  const toast = useToast(); // hook dari Chakra UI
 
   useEffect(() => {
     // Mengatur deteksi layar besar
