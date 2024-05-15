@@ -198,7 +198,7 @@ const Login = ({ setIsAuthenticated }) => {
                       <FaEyeSlash size={20} />
                     ) : (
                       <FaEye size={20} />
-                    )}{" "}
+                    )}
                   </div>
                 </div>
               </div>
