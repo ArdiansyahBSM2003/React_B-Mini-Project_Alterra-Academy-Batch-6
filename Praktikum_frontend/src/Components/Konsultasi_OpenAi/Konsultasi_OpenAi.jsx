@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Konsultasi_OpenAi() {
-  // State untuk menyimpan pertanyaan, jawaban, daftar percakapan, dan lainnya
+  // State untuk menyimpan pertanyaan, jawaban, daftar percakapan
   const [pertanyaan, setPertanyaan] = useState("");
   const [jawaban, setJawaban] = useState("");
   const [percakapan, setPercakapan] = useState([]);
@@ -11,7 +11,6 @@ function Konsultasi_OpenAi() {
   const [sedangMemuat, setSedangMemuat] = useState(false);
   const [kesalahan, setKesalahan] = useState(null);
 
-  // URL API dan efek samping untuk mendapatkan percakapan saat komponen dimuat
   const apiUrl = import.meta.env.VITE_MOCK_API;
 
   useEffect(() => {
@@ -29,61 +28,57 @@ function Konsultasi_OpenAi() {
     }
   }
 
-  // Fungsi untuk menghasilkan jawaban untuk pertanyaan tertentu
+  // Fungsi untuk menghasilkan jawaban untuk pertanyaan
   async function generateAnswerForQuestion(pertanyaan) {
     try {
       // Deteksi jenis pertanyaan berdasarkan kontennya
       const terkaitSawi = pertanyaan.toLowerCase().includes("sawi");
       const pertanyaanIdentitas = pertanyaan
         .toLowerCase()
-        .includes("bisakah kamu membantu saya", "kamu siapa?");
+        .includes("kamu siapa?");
       const pertanyaanKasara =
         /\b(fuck|sialan|anjing|tolol|njirt|dog|stupid|pussy|babi|cunt)\b/i.test(
           pertanyaan
         );
 
       // Logika untuk memberikan jawaban berdasarkan jenis pertanyaan
-      if (!terkaitSawi && !pertanyaanIdentitas && !pertanyaanKasara) {
-        return "Maaf, saya hanya dapat menjawab pertanyaan terkait dengan sayuran sawi.";
-      }
-
       if (pertanyaanKasara) {
         return "Mohon maaf, saya tidak dapat menjawab pertanyaan yang mengandung kata-kata kasar atau tidak pantas. Sebagai AI yang bekerja dalam industri profesional, saya harus menjaga bahasa yang sopan dan ramah.";
-      }
-
-      if (pertanyaanIdentitas) {
+      } else if (pertanyaanIdentitas) {
         return "Saya adalah AI yang diprogram untuk menjawab pertanyaan seputar sayuran sawi. Saya akan dengan senang hati membantu Anda dengan pertanyaan-pertanyaan terkait topik tersebut.";
+      } else if (!terkaitSawi) {
+        return "Maaf, saya hanya dapat menjawab pertanyaan terkait dengan sayuran sawi.";
+      } else {
+        // Jika pertanyaan terkait sawi,kita gunakan OpenAI untuk menjawab
+        const response = await axios({
+          url: `${import.meta.env.VITE_API_OPEN_AI_URL}?key=${
+            import.meta.env.VITE_API_OPEN_AI_KEY
+          }`,
+          method: "POST",
+          data: {
+            contents: [{ parts: [{ text: pertanyaan }] }],
+          },
+        });
+
+        return response.data.candidates[0].content.parts[0].text;
       }
-
-      // Jika bukan pertanyaan identitas atau tidak pantas, gunakan OpenAI untuk menjawab
-      const response = await axios({
-        url: `${import.meta.env.VITE_API_OPEN_AI_URL}?key=${
-          import.meta.env.VITE_API_OPEN_AI_KEY
-        }`,
-        method: "POST",
-        data: {
-          contents: [{ parts: [{ text: pertanyaan }] }],
-        },
-      });
-
-      return response.data.candidates[0].content.parts[0].text;
     } catch (error) {
-      console.error("Error yields answer, try again!:", error);
+      console.error("Gagal menghasilkan jawaban, coba lagi!:", error);
       throw new Error("Gagal menghasilkan jawaban, coba lagi!");
     }
   }
 
-  // Fungsi untuk menghasilkan jawaban
+  // Membuat fungsi untuk menghasilkan jawaban
   async function generateAnswer() {
     setSedangMemuat(true);
-    setKesalahan(null);
+    setKesalahan(null); //untuk menghapus error sebelumnya jika ada
     try {
       const jawabanBaru = await generateAnswerForQuestion(pertanyaan);
       setJawaban(jawabanBaru);
-      // Simpan percakapan baru dan tanggapan dari server
+      //kemudian dsimpan sebagai percakapan baru dan tanggapan dari server
       const percakapanBaru = { pertanyaan, jawaban: jawabanBaru };
       const response = await axios.post(apiUrl, percakapanBaru);
-      setPercakapan([...percakapan, response.data]);
+      setPercakapan([...percakapan, response.data]); // ini itu untuk membarui list percakapan yang di lihat user
       setPertanyaan("");
     } catch (error) {
       setKesalahan(error.message);
@@ -91,20 +86,20 @@ function Konsultasi_OpenAi() {
     setSedangMemuat(false);
   }
 
-  // Fungsi untuk memulai mode pengeditan percakapan
+  // Membuat fungsi untuk memulai mode pengeditan percakapan
   async function editPercakapan(indeks) {
-    setSedangMemuat(true);
-    setKesalahan(null);
+    setSedangMemuat(false);
+    setKesalahan(null); //untuk menghapus error sebelumnya jika ada
     setIndeksEdit(indeks);
     setPertanyaan(percakapan[indeks].pertanyaan);
     setJawaban(percakapan[indeks].jawaban);
-    setSedangMemuat(false);
+    // setSedangMemuat(true);
   }
 
-  // Fungsi untuk menyimpan percakapan yang diedit
+  // Membuat fungsi untuk menyimpan percakapan yang diedit
   async function simpanPercakapan(indeks) {
     setSedangMemuat(true);
-    setKesalahan(null);
+    setKesalahan(null); //untuk menghapus error sebelumnya jika ada
     try {
       const percakapanDiperbarui = {
         ...percakapan[indeks],
@@ -125,16 +120,16 @@ function Konsultasi_OpenAi() {
         jawaban: jawabanDiperbarui,
       });
       setPercakapan(percakapanBaru);
-      setIndeksEdit(-1);
+      setIndeksEdit(-1); //-1 untuk keluar dari mode pengeditan.
       setPertanyaan("");
       setJawaban("");
     } catch (error) {
       setKesalahan(error.message);
     }
-    setSedangMemuat(false);
+    setSedangMemuat(false); // menghentikan loading saat menyimpan percakapan setelah selesai edit
   }
 
-  // Fungsi untuk menghapus percakapan
+  //Membuat fungsi untuk menghapus percakapan
   async function hapusPercakapan(indeks) {
     try {
       await axios.delete(`${apiUrl}/${percakapan[indeks].id}`);
@@ -183,7 +178,7 @@ function Konsultasi_OpenAi() {
                     : () => simpanPercakapan(indeksEdit)
                 }
                 disabled={!pertanyaan}>
-                {indeksEdit === -1 ? "Hasilkan Jawaban" : "Simpan Jawaban"}
+                {indeksEdit === -1 ? "Kirim Pertanyaan" : "Simpan Jawaban"}
               </button>
             </div>
             {sedangMemuat && (
