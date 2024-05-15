@@ -45,21 +45,21 @@ const Daftar = () => {
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
-      .min(3, "First name must be at least 3 characters")
-      .required("First name is required"),
+      .min(3, "Nama depan minimal harus 3 karakter")
+      .required("Nama depan wajib diisi"),
     lastName: Yup.string()
-      .min(3, "Last name must be at least 3 characters")
-      .required("Last name is required"),
-    username: Yup.string().required("Username is required"),
+      .min(3, "Nama belakang minimal harus 3 karakter")
+      .required("Nama belakang wajib diisi"),
+    username: Yup.string().required("Nama pengguna diperlukan"),
     email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
+      .email("alamat email salah")
+      .required("Email diperlukan"),
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
+      .min(8, "Kata sandi minimal harus 8 karakter")
+      .required("kata sandi dibutuhkan"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Password confirmation is required"),
+      .oneOf([Yup.ref("password"), null], "kata sandi harus cocok")
+      .required("Konfirmasi kata sandi diperlukan"),
   });
 
   // Penanganan submit formulir
@@ -71,7 +71,7 @@ const Daftar = () => {
     localStorage.setItem("users", JSON.stringify(users));
 
     toast({
-      title: "Registration successful! Please log in.",
+      title: "Registrasi berhasil! Silahkan login.",
       status: "success",
       duration: 3000,
       isClosable: true,
