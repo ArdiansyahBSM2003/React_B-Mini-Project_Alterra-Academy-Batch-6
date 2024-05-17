@@ -83,17 +83,17 @@ Berikut adalah langkah-langkah untuk menjalankan proyek secara local :
    - git clone git@github.com:ArdiansyahBSM2003/React_B-Mini-Project_Alterra-Academy-Batch-6.git
 
 6. Install dependencies:
-      npm install
-7. Konfigurasi environment variabels:
-    Url dari mock API
+   
+         npm install
+8. Konfigurasi environment variabels:
+   
         VITE_MOCK_API=https://66392a494253a866a2509545.mockapi.io/chats
-
-    Url dari Open AI Gemini
          VITE_API_OPEN_AI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
          VITE_API_OPEN_AI_KEY="AIzaSyDhfg1GTNmsES0CjJiSkgPQSm98CxtVkdc"
    
-8. Jalankan Project
-     npm run dev
+9. Jalankan Project
+
+         npm run dev
 
 
    
