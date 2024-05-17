@@ -1,4 +1,4 @@
-#SawiQu
+# SawiQu
 ## Tentang Proyek saya
 SawiQu merupakan aplikasi yang menggunakan teknologi Computer Vision untuk mengidentifikasi hama pertanian berdasarkan gambar yang diunggah pengguna.
 Kami bekerja sama dengan para ahli pertanian dan menggunakan teknologi terkini untuk membantu petani melindungi tanaman mereka dari serangan hama yang dapat mengganggu hasil panen.
