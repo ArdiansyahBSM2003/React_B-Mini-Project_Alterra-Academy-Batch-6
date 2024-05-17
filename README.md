@@ -85,13 +85,16 @@ Berikut adalah langkah-langkah untuk menjalankan proyek secara local :
 6. Install dependencies:
    
          npm install
+   
 8. Konfigurasi environment variabels:
+
+         note: simpan di dalam file { .env }
    
          VITE_MOCK_API=https://66392a494253a866a2509545.mockapi.io/chats
          VITE_API_OPEN_AI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
          VITE_API_OPEN_AI_KEY="AIzaSyDhfg1GTNmsES0CjJiSkgPQSm98CxtVkdc"
    
-9. Jalankan Project
+10. Jalankan Project
 
          npm run dev
 
