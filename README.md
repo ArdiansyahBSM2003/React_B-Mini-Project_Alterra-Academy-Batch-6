@@ -85,12 +85,12 @@ Berikut adalah langkah-langkah untuk menjalankan proyek secara local :
 6. Install dependencies:
       npm install
 7. Konfigurasi environment variabels:
-   # Url dari mock API
-VITE_MOCK_API=https://66392a494253a866a2509545.mockapi.io/chats
+   - Url dari mock API
+        VITE_MOCK_API=https://66392a494253a866a2509545.mockapi.io/chats
 
-# Url dari Open AI Gemini
-   VITE_API_OPEN_AI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
-   VITE_API_OPEN_AI_KEY="AIzaSyDhfg1GTNmsES0CjJiSkgPQSm98CxtVkdc"
+   - Url dari Open AI Gemini
+         VITE_API_OPEN_AI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+         VITE_API_OPEN_AI_KEY="AIzaSyDhfg1GTNmsES0CjJiSkgPQSm98CxtVkdc"
    
 8. Jalankan Project
      npm run dev
