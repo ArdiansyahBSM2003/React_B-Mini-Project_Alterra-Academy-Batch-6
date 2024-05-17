@@ -28,3 +28,26 @@ You can provide feedback to the Admin by filling in the form on our contact page
 1. Monitor AI chatbot interactions with users.
 2. Train and update AI to improve service quality.
 3. Integrate data from AI chatbots for further analysis.
+
+# TechStacks
+### List of tools:
+
+. Nodes
+. Axios
+. Visual Studio Code
+. React Js
+. Github
+. Github Desktop
+. Tailwind
+. Supabase
+. React router dom
+. Vite
+. React icons
+
+# Live App Demo
+https://react-b-mini-project-alterra-academy-batch-6.vercel.app
+
+
+# THANK YOU
+
+
