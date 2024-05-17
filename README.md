@@ -92,7 +92,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek secara local :
    
          VITE_MOCK_API=https://66392a494253a866a2509545.mockapi.io/chats
          VITE_API_OPEN_AI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
-         VITE_API_OPEN_AI_KEY="AIzaSyDhfg1GTNmsES0CjJiSkgPQSm98CxtVkdc"
+         VITE_API_OPEN_AI_KEY="masukkan api key dari gemini"  // pada baris kode ini silahkan buat akun di gemini openAI dan create apikey di sana. kita juga bisa akses di link berikut ini        https://aistudio.google.com/app/apikey .
    
 10. Jalankan Project
 
