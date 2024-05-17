@@ -100,6 +100,6 @@ Berikut adalah langkah-langkah untuk menjalankan proyek secara local :
 
 
    
-# THANK YOU
+#                                                                                                 THANK YOU
 
 
