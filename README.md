@@ -87,7 +87,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek secara local :
          npm install
 8. Konfigurasi environment variabels:
    
-        VITE_MOCK_API=https://66392a494253a866a2509545.mockapi.io/chats
+         VITE_MOCK_API=https://66392a494253a866a2509545.mockapi.io/chats
          VITE_API_OPEN_AI_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
          VITE_API_OPEN_AI_KEY="AIzaSyDhfg1GTNmsES0CjJiSkgPQSm98CxtVkdc"
    
